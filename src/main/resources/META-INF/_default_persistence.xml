@@ -1,8 +1,3 @@
-<!--This file is meant to be copied in this same directory and named persistence.xml-->
-<!--It serves only as a helper to write the persistence file.-->
-<!--The newly copied file SHOULD NOT BE commited to the git repo as it contains local setup.-->
-<!-- for each developer.-->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,3 +21,8 @@
         </properties>
     </persistence-unit>
 </persistence>
+
+<!--This file is meant to be copied in this same directory and named persistence.xml-->
+<!--It serves only as a helper to write the persistence file.-->
+<!--The newly copied file SHOULD NOT BE commited to the git repo as it contains local setup.-->
+<!-- for each developer.-->
