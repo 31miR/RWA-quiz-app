@@ -1,0 +1,28 @@
+<!--This file is meant to be copied in this same directory and named persistence.xml-->
+<!--It serves only as a helper to write the persistence file.-->
+<!--The newly copied file SHOULD NOT BE commited to the git repo as it contains local setup.-->
+<!-- for each developer.-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="kvizPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--REMINDER: Add class tags below this line for each entity created in the future-->
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <!--REMINDER: Might need to change line below if your sql server is setup weirdly-->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/blogdb?createDatabaseIfNotExist=true"/>
+            <!--REMINDER: Replace this with your user and password values-->
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="password"/>
+            
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
