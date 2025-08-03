@@ -9,6 +9,7 @@
         <class>com.example.kviz.model.Admin</class>
         <class>com.example.kviz.model.Quiz</class>
         <class>com.example.kviz.model.Question</class>
+        <class>com.example.kviz.model.Answer</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <!--REMINDER: Might need to change line below if your sql server is setup weirdly-->
