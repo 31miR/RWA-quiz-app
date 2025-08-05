@@ -1,0 +1,123 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+@super_token = eyJ0eXAiOiJKV1QiLCJhbGciOi...
+
+### LOGIN ADMIN
+POST http://localhost:8080/kviz/api/admin/login
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "pass123"
+}
+
+### LOGOUT ADMIN
+POST http://localhost:8080/kviz/api/admin/logout
+Authorization: Bearer {{token}}
+
+### KREIRANJE NOVOG ADMINA (SUPER ADMIN)
+POST http://localhost:8080/kviz/api/admin/create
+Authorization: Bearer {{super_token}}
+Content-Type: application/json
+
+{
+  "username": "newadmin",
+  "password": "newpass"
+}
+
+### BRISANJE ADMINA
+DELETE http://localhost:8080/kviz/api/admin/5
+Authorization: Bearer {{super_token}}
+
+### DOBIJANJE LISTE ADMINA (PAGINACIJA)
+GET http://localhost:8080/kviz/api/admin/list?offset=0&limit=10
+Authorization: Bearer {{super_token}}
+
+### UREĐIVANJE ADMINA
+PUT http://localhost:8080/kviz/api/admin/5
+Authorization: Bearer {{super_token}}
+Content-Type: application/json
+
+{
+  "username": "updatedUsername",
+  "password": "updatedPassword"
+}
+
+### KREIRANJE KVIZA
+POST http://localhost:8080/kviz/api/quiz/create
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="title"
+
+Kviz o matematici
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="kviz.jpg"
+Content-Type: image/jpeg
+
+< ./kviz.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### UREĐIVANJE KVIZA
+PUT http://localhost:8080/kviz/api/quiz/3
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="title"
+
+Novi naslov kviza
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="nova_slika.jpg"
+Content-Type: image/jpeg
+
+< ./nova_slika.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### BRISANJE KVIZA
+DELETE http://localhost:8080/kviz/api/quiz/3
+Authorization: Bearer {{token}}
+
+### LISTA KVIZOVA ADMINA (PAGINACIJA)
+GET http://localhost:8080/kviz/api/quiz/list?offset=0&limit=10
+Authorization: Bearer {{token}}
+
+### PODACI O JEDNOM KVIZU
+GET http://localhost:8080/kviz/api/quiz/3
+Authorization: Bearer {{token}}
+
+### DOBIJANJE PITANJA ZA KVIZ
+GET http://localhost:8080/kviz/api/quiz/3/questions
+Authorization: Bearer {{token}}
+
+### DOBIJANJE ODGOVORA ZA PITANJE
+GET http://localhost:8080/kviz/api/question/15/answers
+Authorization: Bearer {{token}}
+
+### DODAVANJE ILI UREĐIVANJE PITANJA I ODGOVORA ZA KVIZ
+PUT http://localhost:8080/kviz/api/quiz/3/questions
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "Koji je glavni grad Francuske?",
+      "image": null,
+      "answers": [
+        { "id": 101, "text": "Pariz", "correct": true },
+        { "id": 102, "text": "London", "correct": false },
+        { "id": 103, "text": "Madrid", "correct": false }
+      ]
+    },
+    {
+      "text": "Koliko je 2+2?",
+      "image": null,
+      "answers": [
+        { "text": "4", "correct": true },
+        { "text": "22", "correct": false }
+      ]
+    }
+  ]
+}
