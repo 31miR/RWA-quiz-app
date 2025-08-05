@@ -14,6 +14,20 @@ public class Admin {
     private String username;
     @Column(nullable=false)
     private String password;
+    @Column(nullable=false)
+    private boolean isSuperAdmin;
+
+    public boolean isIsSuperAdmin() {
+        return this.isSuperAdmin;
+    }
+
+    public boolean getIsSuperAdmin() {
+        return this.isSuperAdmin;
+    }
+
+    public void setIsSuperAdmin(boolean isSuperAdmin) {
+        this.isSuperAdmin = isSuperAdmin;
+    }
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Quiz> quizzes = new ArrayList<>();
 
