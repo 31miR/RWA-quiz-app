@@ -1,5 +1,11 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-@super_token = eyJ0eXAiOiJKV1QiLCJhbGciOi...
+#When you login with an admin and get a token back
+#Place it in these variables (depending on if it's regular admin
+#or super admin)
+#Undo changes at the end
+#DO NOT PUSH ANY CHANGES TO GIT JUST BECAUSE YOU'VE PASTED A TOKEN
+#THAT IS UNECCESARY
+@token = 
+@super_token = 
 
 ### LOGIN ADMIN
 POST http://localhost:8080/kviz/api/admin/login
