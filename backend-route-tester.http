@@ -4,8 +4,8 @@
 #Undo changes at the end
 #DO NOT PUSH ANY CHANGES TO GIT JUST BECAUSE YOU'VE PASTED A TOKEN
 #THAT IS UNECCESARY
-@token = 
-@super_token = 
+@cookie = 
+@super_cookie = 
 
 ### LOGIN ADMIN
 POST http://localhost:8080/kviz/api/admin/login
@@ -18,11 +18,15 @@ Content-Type: application/json
 
 ### LOGOUT ADMIN
 POST http://localhost:8080/kviz/api/admin/logout
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
+
+### Get data about yourself
+GET http://localhost:8080/kviz/api/whoami
+Cookie: {{cookie}}
 
 ### KREIRANJE NOVOG ADMINA (SUPER ADMIN)
 POST http://localhost:8080/kviz/api/admin/create
-Authorization: Bearer {{super_token}}
+Cookie: {{super_cookie}}
 Content-Type: application/json
 
 {
@@ -32,15 +36,15 @@ Content-Type: application/json
 
 ### BRISANJE ADMINA
 DELETE http://localhost:8080/kviz/api/admin/5
-Authorization: Bearer {{super_token}}
+Cookie: {{super_cookie}}
 
 ### DOBIJANJE LISTE ADMINA (PAGINACIJA)
 GET http://localhost:8080/kviz/api/admin/list?offset=0&limit=10
-Authorization: Bearer {{super_token}}
+Cookie: {{super_cookie}}
 
 ### UREĐIVANJE ADMINA
 PUT http://localhost:8080/kviz/api/admin/5
-Authorization: Bearer {{super_token}}
+Cookie: {{super_cookie}}
 Content-Type: application/json
 
 {
@@ -50,7 +54,7 @@ Content-Type: application/json
 
 ### KREIRANJE KVIZA
 POST http://localhost:8080/kviz/api/quiz/create
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -66,7 +70,7 @@ Content-Type: image/jpeg
 
 ### UREĐIVANJE KVIZA
 PUT http://localhost:8080/kviz/api/quiz/3
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -82,27 +86,27 @@ Content-Type: image/jpeg
 
 ### BRISANJE KVIZA
 DELETE http://localhost:8080/kviz/api/quiz/3
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 
 ### LISTA KVIZOVA ADMINA (PAGINACIJA)
 GET http://localhost:8080/kviz/api/quiz/list?offset=0&limit=10
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 
 ### PODACI O JEDNOM KVIZU
 GET http://localhost:8080/kviz/api/quiz/3
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 
 ### DOBIJANJE PITANJA ZA KVIZ
 GET http://localhost:8080/kviz/api/quiz/3/questions
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 
 ### DOBIJANJE ODGOVORA ZA PITANJE
 GET http://localhost:8080/kviz/api/question/15/answers
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 
 ### DODAVANJE ILI UREĐIVANJE PITANJA I ODGOVORA ZA KVIZ
 PUT http://localhost:8080/kviz/api/quiz/3/questions
-Authorization: Bearer {{token}}
+Cookie: {{cookie}}
 Content-Type: application/json
 
 {
