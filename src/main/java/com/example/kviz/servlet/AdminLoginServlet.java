@@ -55,6 +55,8 @@ public class AdminLoginServlet extends HttpServlet {
         }
 
         request.getSession().setAttribute("username", username);
+        request.getSession().setAttribute("adminId", adminService.findByUsername(username).getId());
+
         if (adminService.isAdminSuperAdmin(username)) {
             request.getSession().setAttribute("isSuperAdmin", true);
         }
