@@ -29,12 +29,12 @@ public class SuperAdminAuthFilter implements Filter {
         }
 
         if (!isLoggedIn) {
-            response.sendRedirect("/login");
+            response.sendRedirect("kviz/api/admin/login");
             return;
         }
 
         if (!isSuperAdmin) {
-            response.sendRedirect("/login");
+            response.sendRedirect("kviz/api/admin/login");
             return;
         }
 

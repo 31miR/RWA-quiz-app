@@ -27,7 +27,7 @@ public class AuthFilter implements Filter {
         boolean isLoggedIn = session != null && session.getAttribute("adminId") != null;
 
         if (!isLoggedIn) {
-            response.sendRedirect("/login");
+            response.sendRedirect("kviz/api/admin/login");
             return;
         }
 
