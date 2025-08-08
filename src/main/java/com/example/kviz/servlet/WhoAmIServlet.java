@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 class AdminRawData {
     public long id;
+    public String fullName;
     public String username;
     public boolean isSuperAdmin;
 }
@@ -50,6 +51,7 @@ public class WhoAmIServlet extends HttpServlet {
 
         AdminRawData adminRaw = new AdminRawData();
         adminRaw.id = admin.getId();
+        adminRaw.fullName = admin.getFullName();
         adminRaw.username = admin.getUsername();
         adminRaw.isSuperAdmin = admin.getIsSuperAdmin();
 
