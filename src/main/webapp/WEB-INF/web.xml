@@ -9,5 +9,22 @@
     <listener>
         <listener-class>com.example.kviz.listener.AppContextListener</listener-class>
     </listener>
-    
+    <servlet>
+        <servlet-name>LoginHtml</servlet-name>
+        <jsp-file>/admin/login.html</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginHtml</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LogoutHtml</servlet-name>
+        <jsp-file>/admin/logout.html</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogoutHtml</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
 </web-app>
