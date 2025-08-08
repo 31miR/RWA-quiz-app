@@ -19,7 +19,7 @@ public class AuthFilter implements Filter {
 
         String path = request.getRequestURI();
 
-        if (path.equals("/kviz/admin/login") || path.equals("/kviz/admin/logout")) {
+        if (path.startsWith("/kviz/admin/login") || path.startsWith("/kviz/admin/logout")) {
             chain.doFilter(request, response);
             return;
         }
