@@ -12,8 +12,8 @@ POST http://localhost:8080/kviz/api/admin/login
 Content-Type: application/json
 
 {
-  "username": "admin1",
-  "password": "pass123"
+  "username": "suad",
+  "password": "superadmin"
 }
 
 ### LOGOUT ADMIN
@@ -24,31 +24,37 @@ Cookie: {{cookie}}
 GET http://localhost:8080/kviz/api/whoami
 Cookie: {{cookie}}
 
-### KREIRANJE NOVOG ADMINA (SUPER ADMIN)
-POST http://localhost:8080/kviz/api/admin/create
+### CREATE NEW ADMIN
+POST http://localhost:8080/kviz/api/superadmin/admin
 Cookie: {{super_cookie}}
 Content-Type: application/json
 
 {
-  "username": "newadmin",
+  "fullName": "Bro Bro",
+  "username": "bro",
   "password": "newpass"
 }
 
-### BRISANJE ADMINA
-DELETE http://localhost:8080/kviz/api/admin/5
+### Delete the admin
+DELETE http://localhost:8080/kviz/api/superadmin/admin?id=13
 Cookie: {{super_cookie}}
 
-### DOBIJANJE LISTE ADMINA (PAGINACIJA)
-GET http://localhost:8080/kviz/api/admin/list?offset=0&limit=10
+### Get a list of admins
+GET http://localhost:8080/kviz/api/superadmin/admin?offset=0&limit=10
 Cookie: {{super_cookie}}
 
-### UREĐIVANJE ADMINA
-PUT http://localhost:8080/kviz/api/admin/5
+### Get an admin with id
+GET http://localhost:8080/kviz/api/superadmin/admin?id=13
+Cookie: {{super_cookie}}
+
+### Update existing admin
+PUT http://localhost:8080/kviz/api/superadmin/admin?id=13
 Cookie: {{super_cookie}}
 Content-Type: application/json
 
 {
-  "username": "updatedUsername",
+  "id": 13,
+  "username": "brombrom",
   "password": "updatedPassword"
 }
 
