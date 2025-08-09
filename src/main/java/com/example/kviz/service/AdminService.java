@@ -62,21 +62,17 @@ public class AdminService {
         return false;
     }
 
-    public void registerNewAdmin(String username, String password) throws Error {
-        if (doesAdminWithUsernameExist(username)) {
-            throw new Error("Admin with username already exists");
+    public void registerNewAdmin(Admin admin) throws Error {
+        if (doesAdminWithUsernameExist(admin.getUsername())) {
+            throw new RuntimeException("Admin with username already exists");
         }
-        Admin admin = new Admin();
-        admin.setUsername(username);
-        admin.setPassword(password);
-        admin.setIsSuperAdmin(false);
         save(admin);
     }
 
     public void updateAdmin(Admin newAdmin) throws Error {
         Admin sameUsernameAdmin = findByUsername(newAdmin.getUsername());
         if (sameUsernameAdmin != null && !(sameUsernameAdmin.getId().equals(newAdmin.getId()))) {
-            throw new Error("Cannot change username to one that is already taken");
+            throw new RuntimeException("Cannot change username to one that is already taken");
         }
         update(newAdmin);
     }
