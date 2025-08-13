@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId') !== null ? urlParams.get('userId') : 0;
+    const userId = urlParams.get('userId');
 
-    if (userId) {
+    if (userId != null) {
         fetchUserData(userId);
     }
     const form = document.getElementById('user-form');
@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const user = {
             id: userId,
-            name: name,
+            fullName: name,
             username: username,
             password: password,
         }
 
         $.ajax({
-            url: '/kviz/insertUser',   
+            url: '/kviz/api/superadmin/admin',   
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(user),

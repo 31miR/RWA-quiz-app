@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     function fetchAndPopulateTable() {
         $.ajax({
-            url: '/kviz/fetchUsers',     
+            url: '/kviz/api/superadmin/admin?offset=0&limit=10',     
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -38,15 +38,15 @@ $(document).ready(function () {
 
         $('.edit-button').click(function () {
             var userId = $(this).data('id');
-            window.location.href = 'addNewUser?userId=' + userId;
+            window.location.href = 'addNewUser.html?userId=' + userId;
         });
 
     }
 
     function deleteUser(userId) {
         $.ajax({
-            url: '/kviz/deleteUser',     
-            type: 'POST',
+            url: `/kviz/api/superadmin/admin?id=${userId}`,     
+            type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify({id: userId}),
             success: function (response, status, xhr) {
@@ -59,6 +59,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Error deleting user:', status, error);
+                console.log(xhr);
                 alert('An error occurred while deleting the user.');
             }
         });
