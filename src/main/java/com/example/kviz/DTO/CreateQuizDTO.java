@@ -7,6 +7,7 @@ public class CreateQuizDTO {
     public String title;
     public String description;
     public boolean isImageSent; //this one should be true if creating, but if updating it can be false
+    public String imageURI;
     public Long adminId;
     public List <QuestionDTO> questions;
 }
