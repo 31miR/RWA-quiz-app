@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New User</title>
+    <link rel="stylesheet" href="../styles/addNewUser.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="icon" href="../images/logo.jpg" type="image/jpg">
+</head>
+<body>
+
+<form id="user-form">
+    <div class="form-container">
+        <h3><em>ADD A NEW ADMIN</em></h3>
+        <div id="questionsContainer" class="questions-container">
+            <div class="question-section">
+                <div class="options-container">
+                    <div class="option-group">
+                        <input type="text" name="name" class="option-input" placeholder="Name" required>
+                    </div>
+                    <div class="option-group">
+                        <input type="text" name="username" class="option-input" placeholder="Username" required>
+                    </div>
+                    <div class="option-group">
+                        <input type="password" name="password" class="option-input" placeholder="Password" required>
+                    </div>
+                </div>
+
+                   
+                
+            </div>
+        </div>
+        <div class="submit-buttons">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="location.href='manageUsers';">
+                Cancel
+            </button>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
+
+
+<script src="../scripts/addNewUser.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,121 @@
+/* Osnovni reset i font */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        rgba(36, 46, 77, 0.9),
+        rgba(137, 126, 121, 0.9)
+    );
+}
+
+body::before {
+    content: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("images/texture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Glavni kontejner za formu */
+.form-container {
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8); 
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    width: 90%;
+    max-width: 350px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* Redovi input polja */
+.option-group {
+    margin-bottom: 10px;
+}
+
+/* Input polja */
+.option-input {
+    padding: 12px;
+    border: none;
+    background: #e0dede;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+}
+
+/* Container za option polja */
+.options-container {
+    margin: 20px 0;
+}
+
+.questions-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Stil za submit i cancel dugmad */
+.submit-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.submit-buttons .mdl-button {
+    flex: 1;
+    max-width: 150px;
+}
+
+/* Stil chipova za role */
+.role-chips {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mdl-chip {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    user-select: none;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    transition: all 0.3s ease;
+}
+
+.mdl-chip.selected {
+    background-color: #6200ee;
+    color: white;
+    border-color: #6200ee;
+}
+
+.mdl-chip:hover {
+    border-color: #6200ee;
+}
+
+/* Sakriveni radio inputi */
+input[type="radio"].role-radio {
+    display: none;
+}
+

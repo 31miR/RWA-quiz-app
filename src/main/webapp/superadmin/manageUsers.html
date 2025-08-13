@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage users</title>
+    <link rel="stylesheet" type="text/css" href="../styles/manageUsers.css">
+    <link rel="stylesheet" type="text/css" href="../styles/adminHeader.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../scripts/manageUsers.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="icon" href="images/logo.jpg" type="image/jpg">
+</head>
+<body>
+
+<div class="header-block">
+    <header class="header">
+        <div class="header-content">
+            <div class="header-buttons">
+                <form action="../shared/home" method="GET" style="display:inline;">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    HOME
+                    </button>
+                </form>
+                <form action="manageUsers" method="GET" style="display:inline;">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    USERS
+                    </button>
+                </form>
+              <form action="manageQuizzes" method="GET" style="display:inline;">
+                  <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                  QUIZZES
+                  </button>
+              </form>
+          </div>
+
+            <div class="login-fab">
+              <form action="shared/logout" method="GET" style="display: inline-block;">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                  LOG OUT
+                </button>
+              </form>
+            </div>
+        </div>
+    </header>
+
+    <div class="add-user-button-container">
+        <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored add-user-button">
+        Add new user
+        </button>
+
+    </div>
+</div>
+
+<div class="user-table-container">
+    <table id="user-table" class="user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Hashed Password</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added dynamically via JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

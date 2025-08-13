@@ -1,0 +1,382 @@
+
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.navbar {
+    background-color: transparent;
+    color: white;
+    padding: 1.2rem 2rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.navbar.navbar-scroll {
+    background: #73ecec;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form {
+    color: #000;
+    background-color: #00d6b7;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 32px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.login-fab {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px; /* razmak između LOG IN i SIGN UP */
+}
+
+.login-fab button {
+    width: 56px;
+    height: 56px;
+    font-size: 12px;
+    line-height: 56px;
+    padding: 0;
+    text-align: center;
+    border-radius: 50%;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+#play-btn {
+    width: 96px;          /* još veći krug */
+    height: 96px;
+    font-size: 100px;      /* veća ikonica ili tekst */
+    margin-top: 20px;
+    margin-left: 100px;    
+    line-height: 96px;    /* vertikalno centriranje */
+    padding: 0;
+    border-radius: 50%;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.login-form:hover {
+    color: #fff;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    padding: 2.3rem 2.3rem;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: 1px solid #242e4d;
+    border-radius: 32px;
+    background: #00d6b7;
+    color: #272d35;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.7rem;
+}
+
+.btn:hover {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end; /* ⬅️ postavlja sadržaj desno */
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+.hero {
+    background: url('../images/texture.jpg') center center / cover no-repeat #000;
+       background: linear-gradient(
+        135deg,
+        rgba(36, 46, 77, 0.9),
+        rgba(137, 126, 121, 0.9)
+    );
+    padding: 1.5rem 2rem 11rem;
+    color: #fff;
+    position: relative;
+}
+
+.hero .hero-flex {
+    display: flex;
+    flex-direction: row-reverse; /* ⬅️ OVA LINIJA JE KLJUČNA */
+    justify-content: space-between;
+    align-items: center;
+    gap: 6rem;
+    padding-bottom: 8rem;
+    padding-top: 7rem;
+}
+
+
+.hero .hero-content {
+    margin-left: 70px;
+    color: #000;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.hero img {
+    width: 40%;
+    margin-top: 50px;
+}
+
+.otc {
+    position: relative;
+    width: 320px;
+    margin: 0 -15px;
+}
+
+.otc fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+.otc fieldset div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.otc legend {
+    margin: 0 auto 1em;
+    color: #fff;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: .86em;
+    line-height: 1;
+    margin: .1em;
+    padding: 8px 0 4px;
+    font-size: 2.65em;
+    text-align: center;
+    appearance: textfield;
+    -webkit-appearance: textfield;
+    border: 0;
+    color: #073A39;
+    border-radius: 6px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"]:nth-child(n+4) {
+    order: 2;
+}
+
+.otc div::before {
+    content: '';
+    height: 2px;
+    width: 12px;
+    margin: 0 .25em;
+    order: 1;
+    background: #fff;
+    border-radius: 2px;
+    opacity: .4;
+}
+
+.otc label {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.heading-border {
+    width: 100px;
+    height: 4px;
+    background: #00d6b7;
+    margin: 0 auto 2rem;
+}
+
+.h2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.details section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #272d35;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.details .details-flex {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.details img {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 50px;
+}
+
+.details-content p {
+    font-size: 20px;
+    text-align: justify;
+}
+
+table {
+    border: 2px solid #ffc0cb; /* Baby roze okvir */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ffc0cb; /* Baby roze linije unutar tabele */
+    padding: 10px;
+    text-align: left;
+    background-color: white; /* Bijela pozadina ćelija */
+}
+
+thead {
+    background-color: #ffe4ec; /* Svjetlija baby roze za zaglavlje (po želji) */
+}
+
+tr:hover {
+    background-color: #f9f9f9; /* Blagi hover efekat */
+}
+
+.info-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.info-box {
+    flex: 1 1 calc(20% - 20px);
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-5px);
+    background-color: #e0ffff;
+}
+
+.info-box h3 {
+    font-size: 1.2rem;
+    color: #ff69b4; 
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    font-size: 1rem;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .info-box {
+        flex: 1 1 100%;
+    }
+}
+
+.footer {
+    background: url('../images/texture.jpg') center center / cover no-repeat #000;
+       background: linear-gradient(
+        135deg,
+        rgba(36, 46, 77, 0.9),
+        rgba(137, 126, 121, 0.9)
+    );
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 28px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ff69b4; /* pink hover efekat */
+}
+
+

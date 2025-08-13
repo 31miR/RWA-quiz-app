@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(36, 46, 77, 0.9),
+        rgba(137, 126, 121, 0.9)
+    );
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-image: url("images/texture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* NOVO: zajednički blok s gradijentom */
+.header-block {
+    
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background: transparent; /* maknut gradijent */
+  color: #fff;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+
+.header-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  color: #000;
+  background-color: #00d6b7;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 32px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  color: #fff;
+}
+
+

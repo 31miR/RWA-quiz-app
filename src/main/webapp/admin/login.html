@@ -1,0 +1,41 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <title>Kviz - Početna stranica</title>
+
+    <!-- MDL CSS -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
+    <!-- MDL JavaScript -->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!-- MDL Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="icon" href="images/logo.jpg" type="image/jpg">
+
+    <link rel="stylesheet" type="text/css" href="../styles/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form class="login-form" id="login-form">
+        <div class="flex-row">
+            <input id="firstName" name="username" class="lf--input" placeholder="First name" type="text" required>
+        </div>
+
+        <div class="flex-row">
+            <input id="lastName" name="password" class="lf--input" placeholder="Last name" type="password" required>
+        </div>
+
+        <div id="loginError" class="error-message"></div>
+
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            LOG IN
+        </button>
+    </form>
+</body>
+<script src="../scripts/login.js"></script>
+</html>
+

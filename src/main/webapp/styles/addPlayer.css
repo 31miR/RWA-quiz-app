@@ -1,0 +1,101 @@
+
+
+/* Osnovni reset i font */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        rgba(36, 46, 77, 0.9),
+        rgba(137, 126, 121, 0.9)
+    );
+}
+
+body::before {
+    content: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("images/texture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px; /* povećano sa 20px na 30px */
+    margin: 150px auto;
+    max-width: 1500px; /* povećano sa 600px na 700px */
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8); /* promijenjena boja */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+
+.mdl-textfield {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.options-container {
+    margin: 20px 0;
+}
+
+.option-group {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+ 
+
+
+}
+
+.option-input {
+    width: 100%;
+}
+
+.questions-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+.question-section-plus-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.submit-buttons {
+    display: flex; /* Use Flexbox to align items */
+    gap: 10px; /* Optional: space between buttons */
+    justify-content: center; /* Center the buttons horizontally */
+    margin-top: 20px; /* Optional: space above the buttons */
+}
+
+.submit-buttons .mdl-button {
+    flex: 1; /* Optional: make buttons the same width */
+    max-width: 150px; /* Optional: set a maximum width for buttons */
+}
+
+.lf--input {
+    padding: 12px;
+    border: none;
+    background: #e0dede;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
