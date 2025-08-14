@@ -23,7 +23,6 @@ public class QuizAggregateRepository {
         em.getTransaction().begin();
 
         Quiz newQuiz = new Quiz();
-        em.persist(newQuiz);
         
         newQuiz.setTitle(quizRaw.title);
         newQuiz.setDescription(quizRaw.description);
@@ -54,6 +53,7 @@ public class QuizAggregateRepository {
             newQuiz.getQuestions().add(question);
         }
 
+        em.persist(newQuiz);
         em.getTransaction().commit();
         em.close();
     }
