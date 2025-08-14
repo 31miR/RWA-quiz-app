@@ -44,7 +44,7 @@ public class QuestionRepository {
     public List<Question> findByQuizIdOrdered(Long quizId) {
         EntityManager em = JPAUtil.getEntityManager();
         TypedQuery<Question> query = em.createQuery(
-            "SELECT q FROM Question q WHERE q.quiz.id = :quizId ORDER BY q.orderNumber", Question.class);
+            "SELECT q FROM Question q WHERE q.quiz.id = :quizId ORDER BY q.questionPosition", Question.class);
         query.setParameter("quizId", quizId);
         List<Question> result = query.getResultList();
         em.close();
