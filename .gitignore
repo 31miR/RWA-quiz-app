@@ -1,3 +1,4 @@
 build/
 persistence.xml
 .gradle
+images/
