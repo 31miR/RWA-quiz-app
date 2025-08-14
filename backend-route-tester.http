@@ -58,82 +58,97 @@ Content-Type: application/json
   "password": "updatedPassword"
 }
 
-### KREIRANJE KVIZA
-POST http://localhost:8080/kviz/api/quiz/create
+### Create a new quiz (POST)
+POST http://localhost:8080/kviz/api/admin/quiz
 Cookie: {{cookie}}
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Type: multipart/form-data; boundary=WebAppBoundary
 
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="title"
-
-Kviz o matematici
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="kviz.jpg"
-Content-Type: image/jpeg
-
-< ./kviz.jpg
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-### UREĐIVANJE KVIZA
-PUT http://localhost:8080/kviz/api/quiz/3
-Cookie: {{cookie}}
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="title"
-
-Novi naslov kviza
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="nova_slika.jpg"
-Content-Type: image/jpeg
-
-< ./nova_slika.jpg
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-### BRISANJE KVIZA
-DELETE http://localhost:8080/kviz/api/quiz/3
-Cookie: {{cookie}}
-
-### LISTA KVIZOVA ADMINA (PAGINACIJA)
-GET http://localhost:8080/kviz/api/quiz/list?offset=0&limit=10
-Cookie: {{cookie}}
-
-### PODACI O JEDNOM KVIZU
-GET http://localhost:8080/kviz/api/quiz/3
-Cookie: {{cookie}}
-
-### DOBIJANJE PITANJA ZA KVIZ
-GET http://localhost:8080/kviz/api/quiz/3/questions
-Cookie: {{cookie}}
-
-### DOBIJANJE ODGOVORA ZA PITANJE
-GET http://localhost:8080/kviz/api/question/15/answers
-Cookie: {{cookie}}
-
-### DODAVANJE ILI UREĐIVANJE PITANJA I ODGOVORA ZA KVIZ
-PUT http://localhost:8080/kviz/api/quiz/3/questions
-Cookie: {{cookie}}
+--WebAppBoundary
+Content-Disposition: form-data; name="quiz"
 Content-Type: application/json
 
 {
+  "id": null,
+  "title": "History Quiz",
+  "description": "A quiz about world history",
+  "isImageSent": true,
+  "imageURI": null,
+  "adminId": 1,
   "questions": [
     {
-      "id": 1,
-      "text": "Koji je glavni grad Francuske?",
-      "image": null,
+      "id": null,
+      "questionText": "Who was the first president of the USA?",
+      "timeInterval": 30,
+      "pointAmmount": 100,
+      "questionPosition": 1,
+      "quizId": null,
       "answers": [
-        { "id": 101, "text": "Pariz", "correct": true },
-        { "id": 102, "text": "London", "correct": false },
-        { "id": 103, "text": "Madrid", "correct": false }
-      ]
-    },
-    {
-      "text": "Koliko je 2+2?",
-      "image": null,
-      "answers": [
-        { "text": "4", "correct": true },
-        { "text": "22", "correct": false }
+        {"id": null, "text": "George Washington", "isRight": true, "questionId": null},
+        {"id": null, "text": "Thomas Jefferson", "isRight": false, "questionId": null}
       ]
     }
   ]
 }
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="history.jpg"
+Content-Type: image/jpeg
+
+< ./images/history.jpg
+--WebAppBoundary--
+
+### Update existing quiz without image change (PUT)
+PUT http://localhost:8080/kviz/api/admin/quiz
+Cookie: {{cookie}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="quiz"
+Content-Type: application/json
+
+{
+  "id": 5,
+  "title": "Updated History Quiz",
+  "description": "Updated description",
+  "isImageSent": false,
+  "imageURI": null,
+  "adminId": 1,
+  "questions": []
+}
+--WebAppBoundary--
+
+### Update quiz with new image (PUT)
+PUT http://localhost:8080/kviz/api/admin/quiz
+Cookie: {{cookie}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="quiz"
+Content-Type: application/json
+
+{
+  "id": 5,
+  "title": "Updated History Quiz with Image",
+  "description": "Updated description + image",
+  "isImageSent": true,
+  "imageURI": null,
+  "adminId": 1,
+  "questions": []
+}
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="new-history.jpg"
+Content-Type: image/jpeg
+
+< ./images/new-history.jpg
+--WebAppBoundary--
+
+### Get quizzes with pagination
+GET http://localhost:8080/kviz/api/admin/quiz?offset=0&limit=10
+Cookie: {{cookie}}
+
+### Get quiz by ID
+GET http://localhost:8080/kviz/api/admin/quiz?id=5
+Cookie: {{cookie}}
+
+### Delete quiz
+DELETE http://localhost:8080/kviz/api/admin/quiz?id=5
+Cookie: {{cookie}}
