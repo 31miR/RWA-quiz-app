@@ -1,144 +1,191 @@
-
-.add-quiz-button-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0 30px;
+.add-quiz-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 30px;
 }
 
 .header-content {
-  display: flex;
-  align-items: center;
-  gap: 20px; /* razmak između grupacije dugmadi i logout */
-}
-.submit-buttons {
-    display: flex;          /* postavi flexbox */
-    flex-direction: row;    /* horizontalni raspored */
-    gap: 15px;              /* razmak između dugmadi */
-    align-items: center;    /* vertikalno poravnanje u liniji */
-    justify-content: flex-start; /* ili center, po želji */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
 }
 
-.submit-buttons button.mdl-button {
-    background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
-    color: #333;
-    border: 1px solid #f2c6d4;
-    border-radius: 8px;
+.header-left {
+    flex: 1; /* zauzima lijevu trećinu */
+}
+
+.header-center {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex: 1; /* centar zauzima sredinu */
+}
+
+.header-right {
+    flex: 1; /* desna sekcija skroz desno */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Stil za sve dugmad u headeru i add-quiz dugme */
+.header-center button.mdl-button,
+.header-right button.mdl-button,
+.add-quiz-button-container button.mdl-button {
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
+    color: #333 !important;
+    border: 1px solid #f2c6d4 !important;
+    border-radius: 8px !important;
     min-width: 120px;
     padding: 10px 20px;
     font-size: 16px;
     box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
     transition: background 0.3s ease, color 0.3s ease;
-    text-align: center; /* ovo dodaj */
-    display: flex;      /* da bismo centrirali i vertikalno */
-    justify-content: center; /* horizontalno centriranje */
-    align-items: center;     /* vertikalno centriranje */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.submit-buttons button.mdl-button:hover {
-    background: linear-gradient(to bottom, #ffd6e8, #fff0f5);
-    color: #222;
-    border-color: #e69db6;
+.header-center button.mdl-button:hover,
+.header-right button.mdl-button:hover,
+.add-quiz-button-container button.mdl-button:hover {
+    background: linear-gradient(to bottom, #ffd6e8, #fff0f5) !important;
+    color: #222 !important;
+    border-color: #e69db6 !important;
 }
 
 .add-quiz-button {
-  font-size: 20px;
-  color: #000;
-  background-color: #00d6b7;
-  border-radius: 32px;
-  transition: background-color 0.3s ease;
-  height: 2.4rem;
-  width: 10rem;
-  text-decoration: none;
-  border: 1px solid transparent;
-  cursor: pointer;
+    font-size: 20px;
+    color: #000;
+    background-color: #00d6b7;
+    border-radius: 32px;
+    transition: background-color 0.3s ease;
+    height: 2.4rem;
+    width: 10rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .add-quiz-button:hover {
-  color: #fff;
+    color: #fff;
 }
 
 /* Style for the table container */
 .quiz-table-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
 }
 
 /* Style for the table */
 .quiz-table {
-  width: 90%;
-  border-collapse: collapse;
+    width: 90%;
+    border-collapse: collapse;
 }
 
-.quiz-table th, .quiz-table td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 8px;
+.quiz-table th, 
+.quiz-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
 }
 
 .quiz-table th {
-  background-color: #f2f2f2;
-  text-align: left;
+    background-color: #f2f2f2;
+    text-align: left;
 }
 
 .quiz-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+    background-color: #f9f9f9;
 }
 
 .quiz-table tr:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .quiz-table img.quiz-image {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 /* Style for action buttons */
 .action-button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  border: none;
-  cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
 }
-
 
 .edit-button {
-  background-color: #4CAF50;
-  border-radius: 32px;
-  color: #000;
-  height: 2rem;
-  width: 5rem;
+    background-color: #4CAF50;
+    border-radius: 32px;
+    color: #000;
+    height: 2rem;
+    width: 5rem;
 }
 .edit-button:hover {
-  color: #fff;
+    color: #fff;
 }
-
 
 .play-button {
-  background-color: dodgerblue;
-  border-radius: 32px;
-  color: #000;
-  height: 2rem;
-  width: 5rem;
+    background-color: dodgerblue;
+    border-radius: 32px;
+    color: #000;
+    height: 2rem;
+    width: 5rem;
 }
-
 .play-button:hover {
-  color: #fff;
+    color: #fff;
 }
 
 .delete-button {
-  background-color: #f44336;
-  border-radius: 32px;
-  color: #000;
-  height: 2rem;
-  width: 5rem;
+    background-color: #f44336;
+    border-radius: 32px;
+    color: #000;
+    height: 2rem;
+    width: 5rem;
+}
+.delete-button:hover {
+    color: #fff;
 }
 
-.delete-button:hover {
-  color: #fff;
+.pagination-container {
+    position: fixed;
+    bottom: 20px; /* koliko udaljeno od dna */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* centrirano horizontalno */
+    gap: 10px; /* razmak između dugmadi */
+    z-index: 1000; /* da budu iznad ostalog sadržaja */
+     justify-content: center; /* centriraj horizontalno */
+    align-items: center;
+     text-align: center;
+}
+
+.pagination-container button {
+    display: flex; /* ključno za centriranje */
+    justify-content: center; /* horizontalno centriranje teksta */
+    align-items: center; /* vertikalno centriranje teksta */
+
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
+    border: 1px solid #f2c6d4;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
+    transition: background 0.3s ease;
+    text-align: center; /* za svaki slučaj */
+}
+
+
+.pagination-container button:hover {
+    background: linear-gradient(to bottom, #ffd6e8, #fff0f5);
+    color: #222;
+    border-color: #e69db6;
 }

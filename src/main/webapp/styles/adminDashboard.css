@@ -1,14 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    padding: 0;
     font-family: 'Jost', sans-serif;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-
     background: linear-gradient(
         135deg,
         rgba(36, 46, 77, 0.9),
@@ -17,35 +10,67 @@ html, body {
 }
 
 body::before {
-    content: none;
+    content: "";
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-image: url("images/texture.jpg");
+    background-image: url("../images/texture.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.3;
     z-index: -1;
 }
-.dashboard {
-  text-align: center;
+
+/* HEADER */
+.header {
+    background: transparent;
+    padding: 10px 30px;
 }
 
-.button {
-  display: inline-block;
-  padding: 15px 30px;
-  font-size: 18px;
-  color: #fff;
-  background: #ff1493;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
-.button:hover {
-  background-color: #ff69b4;
+.header-left {
+    flex: 1; /* prazan prostor lijevo */
 }
+
+.header-center {
+    display: flex;
+    gap: 15px;
+    justify-content: center; /* centrira HOME i QUIZZES */
+    flex: 1;
+}
+
+.header-right {
+    flex: 1; /* desna strana */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Dugmad */
+.mdl-button {
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
+    color: #333 !important;
+    border: 1px solid #f2c6d4 !important;
+    border-radius: 8px !important;
+    min-width: 120px;
+    padding: 10px 20px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
+    transition: background 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mdl-button:hover {
+    background: linear-gradient(to bottom, #ffd6e8, #fff0f5) !important;
+    color: #222 !important;
+    border-color: #e69db6 !important;
+}
+

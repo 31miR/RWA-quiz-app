@@ -8,10 +8,28 @@
     <link rel="icon" href="../images/logo.jpg" type="image/jpg">
 </head>
 <body>
-<div class="dashboard">
-    <a href="manageUsers.html" class="button">USERS</a>
-    <a href="manageQuizzes.html" class="button">QUIZZES</a>
-</div>
+
+<header class="header">
+    <div class="header-content">
+        <div class="header-left"></div> <!-- prazan prostor za balans -->
+
+        <div class="header-center">
+            <form action="home.html" method="GET">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">HOME</button>
+            </form>
+            <form action="manageQuizzes.html" method="GET">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">QUIZZES</button>
+            </form>
+        </div>
+
+        <div class="header-right">
+            <form action="logout" method="POST">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">LOGOUT</button>
+            </form>
+        </div>
+    </div>
+</header>
+
 </body>
 </html>
 

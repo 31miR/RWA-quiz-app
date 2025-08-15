@@ -188,4 +188,29 @@ input[type="text"]::placeholder {
             color: white;
         }
 
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pagination-container button {
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
+    color: #333 !important;
+    border: 1px solid #f2c6d4 !important;
+    border-radius: 8px !important;
+    min-width: 40px;
+    padding: 8px 15px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pagination-container button:hover {
+    background: linear-gradient(to bottom, #ffd6e8, #fff0f5) !important;
+    color: #222 !important;
+    border-color: #e69db6 !important;
+}
 

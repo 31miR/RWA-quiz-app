@@ -1,27 +1,37 @@
 $(document).ready(function () {
+    const rowsPerPage = 10;
+    let currentPage = 1;
+    let allUsers = [];
+
     $('.add-user-button').click(function () {
         window.location.href = 'addNewUser';
     });
 
     function fetchAndPopulateTable() {
         $.ajax({
-            url: '/kviz/api/superadmin/admin?offset=0&limit=10',     
+            url: '/kviz/api/superadmin/admin?offset=0&limit=1000', 
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                populateTable(data);
+                allUsers = data;
+                displayTablePage(currentPage);
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching data:', status, error);
+                allUsers = [];
+                displayTablePage(currentPage);
             }
         });
     }
 
-    function populateTable(data) {
-        var tableBody = $('#user-table tbody');
-        tableBody.empty();     
+    function displayTablePage(page) {
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const tableBody = $('#user-table tbody');
+        tableBody.empty();
 
-        data.forEach(function (user) {
+        const usersToShow = allUsers.slice(start, end);
+        usersToShow.forEach(function (user) {
             var row = $('<tr></tr>');
             row.append('<td>' + user.id + '</td>');
             row.append('<td>' + user.username + '</td>');
@@ -31,6 +41,7 @@ $(document).ready(function () {
             tableBody.append(row);
         });
 
+        // dodaj event za edit i delete dugmad
         $('.delete-button').click(function () {
             var userId = $(this).data('id');
             deleteUser(userId);
@@ -41,11 +52,35 @@ $(document).ready(function () {
             window.location.href = 'addNewUser.html?userId=' + userId;
         });
 
+        createPagination(allUsers.length);
+    }
+
+    function createPagination(totalRows) {
+        const pageCount = Math.ceil(Math.max(totalRows, 1) / rowsPerPage); // minimum 1 stranica
+        const paginationContainer = $('#pagination');
+        paginationContainer.empty();
+
+        for (let i = 1; i <= pageCount; i++) {
+            const btn = $('<button></button>').text(i);
+            btn.addClass('mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect');
+
+            if (i === currentPage) btn.addClass('active');
+
+            btn.click(function () {
+                currentPage = i;
+                displayTablePage(currentPage);
+            });
+
+            paginationContainer.append(btn);
+        }
+
+        // MDL inicijalizacija dugmadi
+        componentHandler.upgradeDom();
     }
 
     function deleteUser(userId) {
         $.ajax({
-            url: `/kviz/api/superadmin/admin?id=${userId}`,     
+            url: `/kviz/api/superadmin/admin?id=${userId}`,
             type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify({id: userId}),
@@ -59,12 +94,11 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Error deleting user:', status, error);
-                console.log(xhr);
                 alert('An error occurred while deleting the user.');
             }
         });
     }
 
-    
     fetchAndPopulateTable();
 });
+

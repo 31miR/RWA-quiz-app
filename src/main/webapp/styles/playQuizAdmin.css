@@ -1,24 +1,49 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    font-family: Arial, sans-serif; /* Optional: set a font */
-    background-color: #f8f9fa;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    overflow: hidden;
 
+    /* ista pozadina kao prije */
+    background: linear-gradient(
+        135deg,
+        rgba(36, 46, 77, 0.9),
+        rgba(137, 126, 121, 0.9)
+    );
 }
 
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("../images/texture.jpg"); /* prilagodi putanju */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* KONTEJNER S TEKSTOM — ista boja kao dugmad */
 .elements-container {
-    background-color: #ffffff;
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
+    color: #333;
+    border: 1px solid #f2c6d4;
+    border-radius: 12px;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
     text-align: center;
     max-width: 450px;
     width: 100%;
 }
+
+/* Ostatak tvojih stilova može ostati isti */
 
 .number-of-players-label {
     display: flex;
