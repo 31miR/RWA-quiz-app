@@ -11,13 +11,13 @@
 </head>
 <body>
 
-<form id="quizForm" enctype="multipart/form-data">
+<form id="quizForm" enctype="multipart/form-data" action="submitQuiz" method="POST">
     <div class="form-container">
         <h3><em>ADD A NEW QUIZ</em></h3>
 
         <div class="input-container">
             <label for="quizTitle">Quiz Title</label>
-            <input type="text" id="quizTitle" placeholder="Quiz Title">
+            <input type="text" id="quizTitle" name="quizTitle" placeholder="Quiz Title" required>
         </div>
 
         <div class="upload-container">
@@ -31,7 +31,7 @@
 
                 <div class="input-container">
                     <label for="questionText">Question Text</label>
-                    <input type="text" id="questionText" name="questionText[]" placeholder="Question text" required>
+                    <input type="text" name="questionText[]" placeholder="Question text" required>
                 </div>
 
                 <div class="options-container">
@@ -69,14 +69,13 @@
                             <span class="mdl-chip__text">Option 4</span>
                         </span>
                     </div>
-                    <input type="hidden" name="correctAnswer[]" id="correctAnswerHidden" required>
+                    <input type="hidden" name="correctAnswer[]" required>
                 </div>
 
                 <div class="input-container">
-                    <label for="timeLengthSlider">Time Length (in seconds): <span id="sliderValue">0</span>s</label>
+                    <label>Time Length (in seconds): <span class="sliderValue">0</span>s</label>
                     <input class="mdl-slider mdl-js-slider"
                         type="range"
-                        id="timeLengthSlider"
                         name="timeLength[]"
                         min="0" max="60" value="0" step="1" tabindex="0">
                 </div>
@@ -90,15 +89,16 @@
         </div>
 
         <div class="submit-buttons">
-            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="location.href='manageQuizzes';">
+            <button type="button" id="cancel-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                 Cancel
             </button>
-            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            <button type="submit" id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                 Submit
             </button>
         </div>
     </div>
 </form>
+
 <script src="../scripts/addNewQuiz.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,47 +5,32 @@
     <title>Manage Quiz</title>
     <link rel="stylesheet" type="text/css" href="../styles/adminHeader.css" />
     <link rel="stylesheet" type="text/css" href="../styles/manageQuiz.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    
-     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../scripts/manageQuiz.js"></script>
     <link rel="icon" href="../images/logo.jpg" type="image/jpg" />
 </head>
-<body>
+<body data-role="superadmin"> <!-- "admin" za običnog admina -->
+
 <header class="header">
     <div class="header-content">
-        <div class="header-left"></div> <!-- prazno za balans -->
-        
+        <div class="header-left"></div>
         <div class="header-center">
-            <form action="../shared/home" method="GET">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">HOME</button>
-            </form>
-            <form action="manageUsers" method="GET">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">USERS</button>
-            </form>
+            <!-- USERS dugme se dodaje preko JS ako je superadmin -->
         </div>
-
         <div class="header-right">
-            <form action="${pageContext.request.contextPath}/logout" method="POST">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">LOGOUT</button>
-            </form>
+            <button id="logout-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                LOGOUT
+            </button>
         </div>
     </div>
 </header>
 
-
 <div class="add-quiz-button-container">
-    <button type="button" 
+    <button id="add-new-quiz-btn" type="button" 
         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
         Add new quiz
     </button>
 </div>
-
-
 
 <div class="quiz-table-container">
     <table id="quiz-table" class="quiz-table">
@@ -65,10 +49,12 @@
         </tbody>
     </table>
 
-    <!-- PAGINACIJA -->
     <div id="pagination" class="pagination-container"></div>
 </div>
 
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../scripts/manageQuiz.js" defer></script>
 </body>
 </html>
 

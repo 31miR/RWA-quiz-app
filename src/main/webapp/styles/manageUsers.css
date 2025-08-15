@@ -80,7 +80,9 @@ body::before {
     background-color: #ff69b4;
     border-radius: 32px;
     height: 2.4rem;
-    width: 10rem;
+    width: auto;
+    min-width: 10rem; /* opcionalno, da dugme ne bude preusko */
+    padding: 10px 20px; /* dovoljno prostora oko teksta */
     border: 1px solid transparent;
     cursor: pointer;
     transition: background-color 0.3s ease;
