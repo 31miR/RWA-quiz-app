@@ -21,21 +21,30 @@
 </head>
 <body>
     <form class="login-form" id="login-form">
-        <div class="flex-row">
-            <input id="firstName" name="username" class="lf--input" placeholder="First name" type="text" required>
-        </div>
+      <div class="flex-row">
+         <input id="firstName" name="username" class="lf--input" placeholder="First name" type="text" required>
+      </div>
 
-        <div class="flex-row">
-            <input id="lastName" name="password" class="lf--input" placeholder="Last name" type="password" required>
-        </div>
+      <div class="flex-row">
+        <input id="lastName" name="password" class="lf--input" placeholder="Last name" type="password" required>
+      </div>
 
-        <div id="loginError" class="error-message"></div>
+      <div id="loginError" class="error-message"></div>
 
         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-            LOG IN
+        LOG IN
         </button>
-    </form>
+
+    <!-- Wanna play? Let's go link - odmah ispod login buttona -->
+      <div class="play-prompt">
+          Wanna play? 
+          <a href="../landingPage.html" class="lets-go-link">Let's go</a>
+      </div>
+  </form>
+
 </body>
+
+
 <script src="../scripts/login.js"></script>
 </html>
 

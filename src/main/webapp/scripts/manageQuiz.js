@@ -1,18 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- USERS dugme za superadmin ---
     const role = document.body.getAttribute('data-role');
-    if (role === 'superadmin') {
-        const headerCenter = document.querySelector('.header-center');
+    const headerCenter = document.querySelector('.header-center');
+
+    // Helper funkcija za kreiranje dugmeta
+    function createNavButton(label, target) {
         const form = document.createElement('form');
-        form.action = 'manageUsers.html';
+        form.action = target;
         form.method = 'GET';
         const button = document.createElement('button');
         button.type = 'submit';
         button.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect';
-        button.textContent = 'USERS';
+        button.textContent = label;
         form.appendChild(button);
-        headerCenter.appendChild(form);
+        return form;
+    }
+
+    // Home uvijek
+    headerCenter.appendChild(createNavButton('HOME', '../landingPage.html'));
+
+    // Quizzes uvijek
+    headerCenter.appendChild(createNavButton('QUIZZES', 'editorDashboard.html'));
+
+    // Users samo za superadmina
+    if (role === 'superadmin') {
+        headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
     }
 
     // --- Add New Quiz dugme ---
@@ -60,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = i;
             btn.classList.add('mdl-button', 'mdl-js-button', 'mdl-button--raised', 'mdl-js-ripple-effect');
 
-            // Trenutna stranica
             if (i === currentPage) {
                 btn.style.background = 'linear-gradient(to bottom, #ffd6e8, #fff0f5)';
             }

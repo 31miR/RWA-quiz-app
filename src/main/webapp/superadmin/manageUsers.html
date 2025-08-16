@@ -15,23 +15,39 @@
     <div class="header-content">
         <div class="header-left"></div>
         <div class="header-center">
-            <!-- USERS dugme -->
-           
+            <!-- HOME -->
+            <form action="../landingPage.html" method="GET">
+                <button type="submit" 
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
+                    HOME
+                </button>
+            </form>
 
-            <!-- QUIZZES dugme -->
+            <!-- QUIZZES -->
             <form action="../admin/editorDashboard.html" method="GET">
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
+                <button type="submit" 
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
                     QUIZZES
+                </button>
+            </form>
+
+            <!-- USERS -->
+            <form action="../admin/manageUsers.html" method="GET">
+                <button type="submit" 
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
+                    USERS
                 </button>
             </form>
         </div>
         <div class="header-right">
-            <button id="logout-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
+            <button id="logout-btn" 
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
                 LOG OUT
             </button>
         </div>
     </div>
 </header>
+
 
 <div class="add-user-button-container">
     <button id="add-new-user-btn" type="button"

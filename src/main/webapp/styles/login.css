@@ -15,6 +15,30 @@ html, body {
         rgba(137, 126, 121, 0.9)
     );
 }
+/* Play prompt ispod login forme */
+.play-prompt {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #000; /* bijeli tekst za "Wanna play?" */
+}
+
+.lets-go-link {
+    color: #ff69b4; /* uočljiva, ali uljudna boja */
+    font-weight: 600;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* blagi halo efekt */
+    transition: all 0.3s ease;
+}
+
+.lets-go-link:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+
 
 body::before {
     content: none;

@@ -1,66 +1,38 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const inputs = document.querySelectorAll("form.otc input");
-    const playBtn = document.getElementById("play-btn");
+document.addEventListener("DOMContentLoaded", () => {
+    const role = document.body.getAttribute("data-role");
+    const loginFab = document.querySelector(".login-fab");
+    loginFab.innerHTML = ""; // očisti dugmad
 
-    // Fokus na prvo polje pri učitavanju
-    if (inputs.length > 0) inputs[0].focus();
-
-    // Automatski prelazak između input polja
-    inputs.forEach((input, index) => {
-        input.setAttribute("maxlength", 1);
-
-        input.addEventListener("input", () => {
-            const value = input.value;
-
-            // Ako je unesena cifra i nije zadnje polje
-            if (value && index < inputs.length - 1) {
-                inputs[index + 1].focus();
-            }
+    if (role === "admin" || role === "superadmin") {
+        // LOGOUT dugme
+        const logoutBtn = document.createElement("button");
+        logoutBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
+        logoutBtn.textContent = "LOG OUT";
+        logoutBtn.addEventListener("click", () => {
+            window.location.href = "admin/login.html";
         });
 
-        // Navigacija sa strelicama
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Backspace" && input.value === "" && index > 0) {
-                inputs[index - 1].focus();
-            }
-            if (e.key === "ArrowLeft" && index > 0) {
-                inputs[index - 1].focus();
-            }
-            if (e.key === "ArrowRight" && index < inputs.length - 1) {
-                inputs[index + 1].focus();
-            }
-            if (e.key === "Enter") {
-                playBtn.click();
-            }
+        // PANELS dugme
+        const panelsBtn = document.createElement("button");
+        panelsBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
+        panelsBtn.textContent = "PANELS";
+        panelsBtn.addEventListener("click", () => {
+            window.location.href = "admin/editorDashboard.html";
         });
-    });
 
-    // Klik na PLAY dugme
-    playBtn.addEventListener("click", function (e) {
-        e.preventDefault();
+        loginFab.appendChild(logoutBtn);
+        loginFab.appendChild(panelsBtn);
 
-        // Spajanje unosa u PIN
-        const pin = Array.from(inputs).map(input => input.value).join("");
+    } else {
+        // LOG IN dugme
+        const loginBtn = document.createElement("button");
+        loginBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
+        loginBtn.textContent = "LOG IN";
+        loginBtn.addEventListener("click", () => {
+            window.location.href = "admin/login.html";
+        });
 
-        if (pin.length !== 6 || !/^\d{6}$/.test(pin)) {
-            alert("Please enter all 6 digits of the PIN.");
-            inputs[0].focus();
-            return;
-        }
-
-        console.log("Entered PIN:", pin);
-
-        // Ako želiš redirekciju sa PIN-om
-        // window.location.href = `/startQuiz?pin=${pin}`;
-
-        // Ili AJAX poziv (npr.)
-        // $.post('/validatePin', { pin }, function(response) {
-        //     if (response.valid) {
-        //         window.location.href = `/quiz/${response.quizId}`;
-        //     } else {
-        //         alert("Invalid PIN");
-        //     }
-        // });
-    });
+        loginFab.appendChild(loginBtn);
+    }
 });
 
