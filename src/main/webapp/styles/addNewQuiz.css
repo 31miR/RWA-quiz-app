@@ -10,7 +10,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 
     background: linear-gradient(
         135deg,

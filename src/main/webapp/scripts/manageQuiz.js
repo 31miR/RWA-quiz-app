@@ -1,4 +1,5 @@
 import { logoutAndRedirectToLanding, isLoggedInSuperAdmin } from "./util/backendHelperFuncs.js";
+import { convertRawListToQuizList } from "./util/quizRawToQuizObject.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const isSuperadmin = await isLoggedInSuperAdmin();
@@ -47,19 +48,58 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentPage = 1;
     const tableBody = document.getElementById('quiz-table')?.getElementsByTagName('tbody')[0];
     const paginationContainer = document.getElementById('pagination');
+    let quizList = []
 
     if (!tableBody || !paginationContainer) return;
 
+    function fetchAndPopulateTable() {
+        $.ajax({
+            url: '/kviz/api/admin/quiz?offset=0&limit=1000',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                quizList = convertRawListToQuizList(data);
+                displayTablePage(currentPage);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching data:', status, error);
+                quizList = [];
+                displayTablePage(currentPage);
+            }
+        });
+    }
+
     function displayTablePage(page) {
-        const rows = Array.from(tableBody.getElementsByTagName('tr'));
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
+        const tableBody = $('#quiz-table tbody');
+        tableBody.empty();
 
-        rows.forEach((row, index) => {
-            row.style.display = (index >= start && index < end) ? '' : 'none';
+        const quizzesToShow = quizList.slice(start, end);
+        quizzesToShow.forEach(quiz => {
+            let row = $('<tr></tr>');
+            row.append('<td>' + quiz.id + '</td>');
+            row.append('<td>' + `<img src="/kviz/${quiz.imageURI}" style="max-width:100px"` + '</td>');
+            row.append('<td>' + quiz.title + '</td>');
+            row.append('<td><button class="action-button edit-button" data-id="' + quiz.id + '">Edit</button> <button class="action-button delete-button" data-id="' + quiz.id + '">Delete</button></td>');
+            tableBody.append(row);
         });
 
-        createPagination(rows.length);
+        $('.delete-button').click(function() {
+            let quizId = $(this).data('id');
+            quizList.filter(quiz => quiz.id == quizId).forEach(quiz => quiz.deleteOnBackend());
+            fetchAndPopulateTable();
+        });
+        
+        /*
+        $('.edit-button').click(function() {
+            let userId = $(this).data('id');
+            window.location.href = 'addNewUser.html?userId=' + userId;
+        });
+        
+        */
+        createPagination(quizList.length);
     }
 
     function createPagination(totalRows) {
@@ -93,6 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    fetchAndPopulateTable();
     displayTablePage(currentPage);
 });
 
