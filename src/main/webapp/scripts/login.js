@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dataType: 'json',
             success: function(response) {
             // Ako je login uspješan, redirectaj na admin početnu stranicu
-                window.location.href = "/kviz/admin/index.html";
+                window.location.href = "/kviz/admin/editorDashboard.html";
             },
             error: function(xhr) {
                 const body = JSON.parse(xhr.responseText);

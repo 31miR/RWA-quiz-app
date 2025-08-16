@@ -1,23 +1,6 @@
+import { logoutAndRedirectToLanding } from "./util/backendHelperFuncs.js";
+
 document.addEventListener('DOMContentLoaded', () => {
-    const role = document.body.getAttribute('data-role');
-    if (role === 'superadmin') {
-        const headerCenter = document.querySelector('.header-center');
-
-        const button = document.createElement('button');
-        button.type = 'button'; // važno da nije submit
-        button.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button';
-        button.textContent = 'USERS';
-
-        button.addEventListener('click', () => {
-            window.location.href = '/superadmin/manageUsers.html'; // putanja do fajla
-        });
-
-        headerCenter.appendChild(button);
-    }
-});
-
-
-
     // --- Add New User dugme ---
     const addUserBtn = document.getElementById('add-new-user-btn');
     if (addUserBtn) {
@@ -32,9 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Logout dugme ---
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            window.location.href = 'login.html';
-        });
+        logoutBtn.addEventListener('click', () => logoutAndRedirectToLanding());
     }
 
     // --- PAGINACIJA TABELA ---
@@ -70,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let row = $('<tr></tr>');
             row.append('<td>' + user.id + '</td>');
             row.append('<td>' + user.username + '</td>');
-            row.append('<td>' + user.password + '</td>');
-            row.append('<td>' + user.role + '</td>');
+            row.append('<td>' + user.fullName + '</td>');
+            row.append('<td>' + (user.isSuperAdmin ? "super admin" : "editor") + '</td>');
             row.append('<td><button class="action-button edit-button" data-id="' + user.id + '">Edit</button> <button class="action-button delete-button" data-id="' + user.id + '">Delete</button></td>');
             tableBody.append(row);
         });

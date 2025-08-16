@@ -1,16 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const role = document.body.getAttribute("data-role");
+import { isLoggedIn, logoutAndRedirectToLanding } from "./util/backendHelperFuncs.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const isLogedIn = await isLoggedIn();
     const loginFab = document.querySelector(".login-fab");
     loginFab.innerHTML = ""; // očisti dugmad
 
-    if (role === "admin" || role === "superadmin") {
+    if (isLogedIn) {
         // LOGOUT dugme
         const logoutBtn = document.createElement("button");
         logoutBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
         logoutBtn.textContent = "LOG OUT";
-        logoutBtn.addEventListener("click", () => {
-            window.location.href = "admin/login.html";
-        });
+        logoutBtn.addEventListener("click", () => logoutAndRedirectToLanding()
+        );
 
         // PANELS dugme
         const panelsBtn = document.createElement("button");

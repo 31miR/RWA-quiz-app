@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const role = document.body.getAttribute('data-role');
+import { logoutAndRedirectToLanding, isLoggedInSuperAdmin } from "./util/backendHelperFuncs.js";
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const isSuperadmin = await isLoggedInSuperAdmin();
     const headerCenter = document.querySelector('.header-center');
 
     // Helper funkcija za kreiranje dugmeta
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     headerCenter.appendChild(createNavButton('QUIZZES', 'editorDashboard.html'));
 
     // Users samo za superadmina
-    if (role === 'superadmin') {
+    if (isSuperadmin) {
         headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
     }
 
@@ -37,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Logout dugme ---
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            window.location.href = 'login.html';
-        });
+        logoutBtn.addEventListener('click', () => logoutAndRedirectToLanding());
     }
 
     // --- PAGINACIJA ---
