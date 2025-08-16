@@ -12,6 +12,14 @@ export async function isLoggedIn() {
     return true;
 }
 
+export async function isLoggedInSuperAdmin() {
+    const adminData = await getLoggedInAdminData();
+    if (adminData.isSuperAdmin) {
+        return true;
+    }
+    return false;
+}
+
 export async function logoutAdmin() {
     await fetch("/kviz/api/admin/logout", {method: "POST"});
 }
@@ -38,5 +46,26 @@ export async function createNewProfile(profileData) {
 
 export async function updateExistingProfile(newProfileData) {
     const response = await fetch(`/kviz/api/superadmin/admin?id=${newProfileData.id}`, {method: 'PUT', body: JSON.stringify(newProfileData)});
+    return response;
+}
+
+export async function getQuizById(id) {
+    const response = await fetch(`/kviz/api/admin/quiz?id=${id}`);
+    const quizData = await response.json();
+    return quizData;
+}
+
+export async function deleteQuizById(id) {
+    const response = await fetch(`/kviz/api/admin/quiz?id=${id}`, {method: "DELETE"});
+    return response;
+}
+
+export async function updateExistingQuiz(quizRaw) {
+    const response = await fetch(`/kviz/api/admin/quiz?id=${id}`, {method: "PUT", body: JSON.stringify(quizRaw)});
+    return response;
+}
+
+export async function createNewQuiz(quizRaw) {
+    const response = await fetch(`/kviz/api/admin/quiz`, {method: "POST", body: JSON.stringify(quizRaw)});
     return response;
 }
