@@ -21,6 +21,16 @@ public class Quiz {
     private Admin admin;
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuizEvent> events = new ArrayList<>();
+
+    public List<QuizEvent> getEvents() {
+        return this.events;
+    }
+
+    public void setEvents(List<QuizEvent> events) {
+        this.events = events;
+    }
 
     public Long getId() {
         return this.id;
