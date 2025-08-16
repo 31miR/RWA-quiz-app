@@ -2,3 +2,5 @@ build/
 persistence.xml
 .gradle
 images/
+bin/
+*.class
