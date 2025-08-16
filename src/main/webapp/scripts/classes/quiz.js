@@ -5,6 +5,7 @@ export default class Quiz {
     title;
     description;
     imageURI;
+    isImageSent;
     adminId;
     questions = [];
 
@@ -38,11 +39,13 @@ export default class Quiz {
         this.questions = [];
     }
 
-    sendToBackendForUpdate() {
+    sendToBackendForUpdate(isImageUpdated) {
+        this.isImageSent = isImageUpdated;
         updateExistingQuiz(this.generateDataForBackend());
     }
 
     sendToBackendForCreate() {
+        this.isImageSent = true;
         createNewQuiz(this.generateDataForBackend());
     }
 }
