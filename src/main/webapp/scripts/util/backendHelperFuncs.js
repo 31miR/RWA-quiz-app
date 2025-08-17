@@ -60,12 +60,58 @@ export async function deleteQuizById(id) {
     return response;
 }
 
-export async function updateExistingQuiz(quizRaw) {
-    const response = await fetch(`/kviz/api/admin/quiz?id=${id}`, {method: "PUT", body: JSON.stringify(quizRaw)});
-    return response;
+export async function updateExistingQuiz(quizRaw, image) {
+  const formData = new FormData();
+
+  const jsonBlob = new Blob([JSON.stringify(quizRaw)], {
+    type: "application/json"
+  });
+  formData.append("quiz", jsonBlob);
+
+  if (image instanceof File) {
+    formData.append("image", image, image.name);
+  }
+
+  const response = await fetch("/kviz/api/admin/quiz", {
+    method: "PUT",
+    body: formData
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to create quiz: ${response.status}`);
+  }
+
+  return await response.json();
 }
 
-export async function createNewQuiz(quizRaw) {
-    const response = await fetch(`/kviz/api/admin/quiz`, {method: "POST", body: JSON.stringify(quizRaw)});
-    return response;
+
+export async function createNewQuiz(quizRaw, image) {
+  const formData = new FormData();
+
+  const jsonBlob = new Blob([JSON.stringify(quizRaw)], {
+    type: "application/json"
+  });
+  formData.append("quiz", jsonBlob);
+
+  if (image instanceof File) {
+    formData.append("image", image, image.name);
+  }
+
+  const response = await fetch("/kviz/api/admin/quiz", {
+    method: "POST",
+    body: formData
+  });
+
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+  console.log(quizRaw)
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+  if (!response.ok) {
+    throw new Error(`Failed to create quiz: ${response.status}`);
+  }
+
+  
+  console.log("~~~~~~~~~~~~~~~~~~~YAY~~~~~~~~~~~~~~~~~~~~")
+
+  return await response.json();
 }

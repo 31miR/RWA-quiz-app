@@ -1,4 +1,4 @@
-import { deleteQuizById, createNewQuiz, updateExistingQuiz } from "../util/backendHelperFuncs.js";
+import { getQuizById, deleteQuizById, createNewQuiz, updateExistingQuiz } from "../util/backendHelperFuncs.js";
 
 export default class Quiz {
     id;
@@ -29,8 +29,13 @@ export default class Quiz {
         }
     }
 
-    deleteOnBackend() {
-        deleteQuizById(this.id);
+    async updateObjectFromBackend(id) {
+        const quizRaw = await getQuizById();
+        this.copyDataFromQuizRaw(quizRaw);
+    }
+
+    async deleteOnBackend() {
+        await deleteQuizById(this.id);
         this.id = null;
         this.title = null;
         this.description = null;
@@ -39,13 +44,15 @@ export default class Quiz {
         this.questions = [];
     }
 
-    sendToBackendForUpdate(isImageUpdated) {
-        this.isImageSent = isImageUpdated;
-        updateExistingQuiz(this.generateDataForBackend());
+    async sendToBackendForUpdate(image) {
+        this.isImageSent = image == null ? false : true;
+        console.log("U metodi od updatea");
+        await updateExistingQuiz(this.generateDataForBackend(), image);
     }
 
-    sendToBackendForCreate() {
+    async sendToBackendForCreate(image) {
         this.isImageSent = true;
-        createNewQuiz(this.generateDataForBackend());
+        console.log("U metodi od createa")
+        await createNewQuiz(this.generateDataForBackend(), image);
     }
 }
