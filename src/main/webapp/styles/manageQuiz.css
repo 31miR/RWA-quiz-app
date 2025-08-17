@@ -76,6 +76,7 @@
 /* Style for the table container */
 .quiz-table-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -155,7 +156,6 @@
 }
 
 .pagination-container {
-    position: fixed;
     bottom: 20px; /* koliko udaljeno od dna */
     left: 0;
     width: 100%;
@@ -172,7 +172,7 @@
     display: flex; /* ključno za centriranje */
     justify-content: center; /* horizontalno centriranje teksta */
     align-items: center; /* vertikalno centriranje teksta */
-
+    margin-top: 20px;
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     border: 1px solid #f2c6d4;
     border-radius: 8px;

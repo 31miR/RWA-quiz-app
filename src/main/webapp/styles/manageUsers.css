@@ -103,11 +103,13 @@ body::before {
 /* Tabela */
 .user-table-container {
     display: flex;
+    flex-direction: column; /* ovo je pravi način */
     justify-content: center;
     align-items: center;
     width: 100%;
     margin-top: 20px;
 }
+
 
 .user-table {
     width: 90%;
@@ -158,7 +160,6 @@ body::before {
     color: #fff;
 }
 .pagination-container {
-    position: fixed;
     bottom: 20px; /* koliko udaljeno od dna */
     left: 0;
     width: 100%;
@@ -175,7 +176,7 @@ body::before {
     display: flex; /* ključno za centriranje */
     justify-content: center; /* horizontalno centriranje teksta */
     align-items: center; /* vertikalno centriranje teksta */
-
+    margin-top: 20px;
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     border: 1px solid #f2c6d4;
     border-radius: 8px;
