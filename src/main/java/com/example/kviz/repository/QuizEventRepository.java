@@ -51,6 +51,38 @@ public class QuizEventRepository {
         }
     }
 
+    public List<QuizEvent> getAllActiveEvents() {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<QuizEvent> query = em.createQuery(
+                "SELECT qe FROM QuizEvent qe WHERE qe.eventActive = :isActive", 
+                QuizEvent.class
+            );
+            query.setParameter("isActive", true);
+            return query.getResultList();
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+    public boolean isPINinUse(String pin) {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+            TypedQuery<QuizEvent> query = em.createQuery(
+                "SELECT e FROM QuizEvent e WHERE e.pin = :pin AND e.eventActive = true",
+                QuizEvent.class
+            );
+            query.setParameter("pin", pin);
+            query.setMaxResults(1);
+
+            return !query.getResultList().isEmpty();
+        } finally {
+            em.close();
+        }
+    }
+
     public void swapEventActive(Long id) {
         EntityManager em = JPAUtil.getEntityManager();
         try {

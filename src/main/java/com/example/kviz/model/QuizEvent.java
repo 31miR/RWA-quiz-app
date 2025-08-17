@@ -31,6 +31,14 @@ public class QuizEvent {
     @OneToMany(mappedBy = "quizEvent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuizPlayer> players = new ArrayList<>();
 
+    public String getPin() {
+        return this.pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+    
     public Long getId() {
         return this.id;
     }
