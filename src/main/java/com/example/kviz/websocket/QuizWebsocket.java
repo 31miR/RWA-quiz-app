@@ -3,17 +3,26 @@ package com.example.kviz.websocket;
 import jakarta.websocket.*;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.*;
 
 import com.example.kviz.DTO.AnswerDTO;
+import com.example.kviz.DTO.GetQuizDTO;
 import com.example.kviz.DTO.QuestionDTO;
+import com.example.kviz.model.QuizEvent;
 import com.example.kviz.model.QuizPlayer;
 import com.example.kviz.service.QuizCRUDService;
 import com.example.kviz.service.QuizEventService;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
+
+class MessageFromClient {
+    String type;
+    Long quizId;
+    String username;
+    List<Long> answers;
+}
+
 
 @ServerEndpoint("/quiz")
 public class QuizWebsocket {
@@ -32,6 +41,7 @@ public class QuizWebsocket {
 
     private static volatile Session adminSession;
     private static volatile Long quizId;
+    private static volatile Long quizEventId;
 
     private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private static ScheduledFuture<?> runningTimer;
@@ -45,28 +55,37 @@ public class QuizWebsocket {
 
     @OnMessage
     public void onMessage(Session session, String message) throws IOException {
-        Map<String, Object> msg = parse(message);
+        MessageFromClient msg = parse(message);
 
-        switch ((String) msg.get("type")) {
+        switch (msg.type) {
             case "join" -> {
-                String username = (String) msg.get("username");
+                String username = msg.username;
                 usernames.put(session, username);
+                quizEventService.createPlayerForQuizEvent(username, quizEventService.getEventById(quizEventId));
+                hasAnswered.put(session, false);
                 broadcast("{\"type\":\"player_count\",\"count\":" + usernames.size() + "}");
             }
 
             case "admin_start" -> {
                 adminSession = session;
-                quizId = ((Number) msg.get("quizId")).longValue();
+                quizId = msg.quizId;
                 currentQuestionIndex = -1;
-                questions = quizCRUDService.getQuizById(quizId).questions;
+                GetQuizDTO quiz = quizCRUDService.getQuizById(quizId);
+                questions = quiz.questions;
+                QuizEvent event = quizEventService.createEventForGivenQuiz(quizCRUDService.getQuizEntityById(quizId));
+                quizEventId = event.getId();
                 broadcast("{\"type\":\"quiz_started\"}");
             }
 
             case "admin_next_question" -> {
                 currentQuestionIndex++;
+                for (Map.Entry<Session, Boolean> entry : hasAnswered.entrySet()) {
+                    hasAnswered.put(entry.getKey(), false);
+                }
+
                 String questionJson = gson.toJson(questions.get(currentQuestionIndex));
                 broadcast("{\"type\":\"new_question\",\"question\":" + questionJson + "}");
-
+                
                 int duration = questions.get(currentQuestionIndex).timeInterval + 2;
                 startTimer(duration);
             }
@@ -74,19 +93,20 @@ public class QuizWebsocket {
             case "answer" -> {
                 respondToAnswerAttempt(msg, session);
 
-                if (allPlayersAnswered()) {
-                    stopTimer();
-                    sendTop10();
-                }
+                //if (allPlayersAnswered()) {
+                //    stopTimer();
+                //    sendTop10();
+                //}
             }
         }
     }
 
-    private void respondToAnswerAttempt(Map<String, Object> msg, Session session) {
+    private void respondToAnswerAttempt(MessageFromClient msg, Session session) {
+        hasAnswered.put(session, true);
         String username = usernames.get(session);
         QuizPlayer player = quizEventService.getPlayerByPlayerName(username);
         boolean isRight = false;
-        List<Long> attemptedAnswers = (List<Long>) msg.get("answers");
+        List<Long> attemptedAnswers = msg.answers;
 
         Set<Long> attemptedAnswersSet = new HashSet<>(attemptedAnswers);
         Set<Long> actualAnswersSet = new HashSet<>();
@@ -99,13 +119,13 @@ public class QuizWebsocket {
 
         if (attemptedAnswersSet.equals(actualAnswersSet)) {
             isRight = true;
-            quizEventService.updatePlayerScore(quizId, player.getScore() + questions.get(currentQuestionIndex).pointAmmount);
+            quizEventService.updatePlayerScore(player.getId(), player.getScore() + questions.get(currentQuestionIndex).pointAmmount);
         }
 
         try {
-            session.getBasicRemote().sendText("{type: 'answerResult', isRight: "
+            session.getBasicRemote().sendText("{\"type\": \"answerResult\", \"isRight\": "
             +String.valueOf(isRight)
-            +", answers: "
+            +", \"answers\": "
             +gson.toJson(actualAnswersSet)
             +"}");
         }
@@ -117,6 +137,7 @@ public class QuizWebsocket {
         sessions.remove(session);
         usernames.remove(session);
         if (session.equals(adminSession)) {
+            quizEventService.switchEventActiveStatus(quizEventId);
             broadcast("{\"type\":\"quiz_ended\"}");
             resetState();
         } else {
@@ -132,6 +153,11 @@ public class QuizWebsocket {
             if (timerSecondsRemaining <= 0) {
                 stopTimer();
                 sendTop10();
+                if (currentQuestionIndex == questions.size()-1) {
+                    try {
+                        adminSession.close();
+                    } catch (Exception e) {}
+                }
             }
         }, 1, 1, TimeUnit.SECONDS);
     }
@@ -157,22 +183,25 @@ public class QuizWebsocket {
     private void resetState() {
         adminSession = null;
         quizId = null;
+        quizEventId = null;
         questions = null;
+        currentQuestionIndex = -1;
+        usernames.clear();
+        hasAnswered.clear();
         stopTimer();
     }
 
-    private Map<String, Object> parse(String json) {
-        Type typeOfHashMap = new TypeToken<HashMap<String, Object>>(){}.getType();
-        return gson.fromJson(json, typeOfHashMap);
+    private MessageFromClient parse(String json) {
+        return gson.fromJson(json, MessageFromClient.class);
     }
 
-    private boolean allPlayersAnswered() {
-        for (Map.Entry<Session, Boolean> entry : hasAnswered.entrySet()) {
-            Boolean value = entry.getValue();
-            if (value == false) {
-                return false;
-            }
-        }
-        return true;
-    }
+    //private boolean allPlayersAnswered() {
+    //    for (Map.Entry<Session, Boolean> entry : hasAnswered.entrySet()) {
+    //        Boolean value = entry.getValue();
+    //        if (value == false) {
+    //            return false;
+    //        }
+    //    }
+    //    return true;
+    //}
 }
