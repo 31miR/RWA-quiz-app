@@ -20,6 +20,8 @@ public class QuizEvent {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(nullable=false)
+    private String pin;
+    @Column(nullable=false)
     boolean eventActive;
     @Column(nullable=false)
     OffsetDateTime dateTimeCreated;
