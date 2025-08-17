@@ -68,8 +68,8 @@ public class QuizEventRepository {
     }
 
     public boolean isPINinUse(String pin) {
-    EntityManager em = JPAUtil.getEntityManager();
-    try {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
             TypedQuery<QuizEvent> query = em.createQuery(
                 "SELECT e FROM QuizEvent e WHERE e.pin = :pin AND e.eventActive = true",
                 QuizEvent.class
@@ -96,6 +96,25 @@ public class QuizEventRepository {
             if (em.isOpen()) {
                 em.close();
             }
+        }
+    }
+
+    public QuizEvent getActiveQuizByPIN(String pin) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<QuizEvent> query = em.createQuery(
+                "SELECT e FROM QuizEvent e WHERE e.pin = :pin AND e.eventActive = true",
+                QuizEvent.class
+            );
+            query.setParameter("pin", pin);
+            query.setMaxResults(1);
+
+            em.close();
+            return query.getSingleResult();
+        }
+        catch (Exception e) {
+            em.close();
+            return null;
         }
     }
 }

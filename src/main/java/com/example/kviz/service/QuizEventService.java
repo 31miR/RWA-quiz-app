@@ -73,6 +73,10 @@ public class QuizEventService {
         return quizEventRepository.isPINinUse(pin);
     }
 
+    public QuizEvent getActiveQuizByPIN(String pin) {
+        return quizEventRepository.getActiveQuizByPIN(pin);
+    }
+
     public QuizEvent getEventById(Long id) {
         return quizEventRepository.findById(id);
     }
