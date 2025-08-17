@@ -46,6 +46,21 @@ public class QuizPlayerRepository {
         }
     }
 
+    public QuizPlayer findPlayerByPlayerName(String playerName) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            QuizPlayer player = 
+                em.createQuery("SELECT p FROM QuizPlayer p WHERE p.playerName = :playerName", QuizPlayer.class)
+                .setParameter("playerName", playerName)
+                .getSingleResult();
+            em.getTransaction().commit();
+            return player;
+        } finally {
+            em.close();
+        }
+    }
+
     public List<QuizPlayer> getTop10PlayersForQuizEvent(Long quizEventId) {
         EntityManager em = JPAUtil.getEntityManager();
         try {

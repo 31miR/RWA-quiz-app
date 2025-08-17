@@ -22,6 +22,10 @@ public class QuizEventService {
         return quizPlayerRepository.getPlayerById(id);
     }
 
+    public QuizPlayer getPlayerByPlayerName(String playerName) {
+        return quizPlayerRepository.findPlayerByPlayerName(playerName);
+    }
+
     public int getPlayerRank(Long id) {
         QuizPlayer player = getPlayerById(id);
         QuizEvent event = player.getQuizEvent();
