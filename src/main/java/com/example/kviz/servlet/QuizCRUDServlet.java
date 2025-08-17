@@ -17,6 +17,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 @MultipartConfig
@@ -87,6 +88,10 @@ public class QuizCRUDServlet extends HttpServlet {
             quiz.imageURI = imagePath;
         }
 
+        HttpSession session = request.getSession(false);
+        Long adminId = (Long) session.getAttribute("adminId");
+        quiz.adminId = adminId;
+
         quizCRUDService.createQuiz(quiz);
         response.setStatus(HttpServletResponse.SC_CREATED);
         response.getWriter().write("{\"message\":\"Successfully created a new quiz\"}");
@@ -133,6 +138,10 @@ public class QuizCRUDServlet extends HttpServlet {
         } else {
             quiz.imageURI = existingQuiz.imageURI;
         }
+
+        HttpSession session = request.getSession(false);
+        Long adminId = (Long) session.getAttribute("adminId");
+        quiz.adminId = adminId;
 
         quizCRUDService.updateQuiz(quiz);
         if (quiz.isImageSent && oldImagePath != null) {
