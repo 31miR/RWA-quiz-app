@@ -30,7 +30,7 @@ export default class Quiz {
     }
 
     async updateObjectFromBackend(id) {
-        const quizRaw = await getQuizById();
+        const quizRaw = await getQuizById(id);
         this.copyDataFromQuizRaw(quizRaw);
     }
 

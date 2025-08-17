@@ -83,22 +83,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             row.append('<td>' + `<img src="/kviz/${quiz.imageURI}" style="max-width:100px"` + '</td>');
             row.append('<td>' + quiz.title + '</td>');
             row.append('<td><button class="action-button edit-button" data-id="' + quiz.id + '">Edit</button> <button class="action-button delete-button" data-id="' + quiz.id + '">Delete</button></td>');
+            row.append('<td><button class="action-button play-button" data-id="' + quiz.id + '">Play</button></td>');
             tableBody.append(row);
         });
 
-        $('.delete-button').click(function() {
+        $('.delete-button').click(async function() {
             let quizId = $(this).data('id');
-            quizList.filter(quiz => quiz.id == quizId).forEach(quiz => quiz.deleteOnBackend());
+            const quizForDeletion = quizList.filter(quiz => quiz.id == quizId)[0];
+            await quizForDeletion.deleteOnBackend();
             fetchAndPopulateTable();
         });
         
-        /*
         $('.edit-button').click(function() {
-            let userId = $(this).data('id');
-            window.location.href = 'addNewUser.html?userId=' + userId;
-        });
-        
-        */
+            let quizId = $(this).data('id');
+            window.location.href = `/kviz/admin/addNewQuiz.html?quizId=${quizId}`;
+            });
+
         createPagination(quizList.length);
     }
 

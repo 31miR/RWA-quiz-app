@@ -5,7 +5,7 @@ import Quiz from "./classes/quiz.js";
 let questions = []; // {id, text, points, seconds, answers:[{text, correct}]}
 let editingId = null;
 const urlParams = new URLSearchParams(window.location.search);
-let quizId = urlParams.get('quizId'); //if this is not null, then this will be treated as an update, not create
+const quizId = +urlParams.get('quizId'); //if this is not null, then this will be treated as an update, not create
 let oldQuiz = null;
 
 // ===== Elements =====
@@ -34,15 +34,16 @@ if (quizId != null) {
     const pageTitle = document.getElementById("page-title");
     pageTitle.innerText = "Update Quiz";
     oldQuiz = new Quiz();
-    oldQuiz.updateObjectFromBackend(quizId);
-    imagePreview.style.backgroundImage = `/kviz/${oldQuiz.imageURI}`;
+    await oldQuiz.updateObjectFromBackend(quizId);
+    console.log(oldQuiz);
+    imagePreview.style.backgroundImage = `url('/kviz/${oldQuiz.imageURI}')`;
     fileName.innerText = "Do not change this if you wish to keep the old photo!";
 
     const title = document.getElementById('quizTitle');
     const description = document.getElementById('quizDescription');
 
-    title.innerText = oldQuiz.title;
-    description.innerText = oldQuiz.description;
+    title.value = oldQuiz.title;
+    description.value = oldQuiz.description;
 
     oldQuiz.questions.forEach(question => {
         questions.push({...question, editingId: question.id})
