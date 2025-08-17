@@ -115,3 +115,9 @@ export async function createNewQuiz(quizRaw, image) {
 
   return await response.json();
 }
+
+export async function getQuizEventIdFromPin(pin) {
+  const response = await fetch(`/kviz/api/quizEvent?pin=${pin}`);
+  const data = await response.json();
+  return data;
+}

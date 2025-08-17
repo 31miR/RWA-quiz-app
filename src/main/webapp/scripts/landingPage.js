@@ -1,4 +1,4 @@
-import { isLoggedIn, logoutAndRedirectToLanding } from "./util/backendHelperFuncs.js";
+import { isLoggedIn, logoutAndRedirectToLanding, getQuizEventIdFromPin } from "./util/backendHelperFuncs.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const isLogedIn = await isLoggedIn();
@@ -35,5 +35,42 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         loginFab.appendChild(loginBtn);
     }
+
+    const inputs = Array.from(document.querySelectorAll('.pin-box input'));
+    const playBtn = document.getElementById('play-btn');
+
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            const value = input.value;
+            // dozvoli samo cifru 0-9
+            input.value = value.replace(/[^0-9]/g, '');
+            if (input.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && input.value === '' && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+
+    playBtn.addEventListener('click', async () => {
+        const pin = inputs.map(i => i.value).join('');
+        if (pin.length < inputs.length) {
+            alert("Unesite cijeli pin!");
+            return;
+        }
+
+        const {quizEventId} = await getQuizEventIdFromPin(pin);
+
+        if (quizEventId == null) {
+            alert("Nema kviza pod datim pinom!");
+            return;
+        }
+
+        window.location.href = "/kviz/quizEventClient.html";
+    });
 });
 
