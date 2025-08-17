@@ -1,105 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Add new quiz</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <link rel="stylesheet" type="text/css" href="../styles/addNewQuiz.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link rel="icon" href="../images/logo.jpg" type="image/jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Builder</title>
+  <link rel="stylesheet" href="../styles/addNewQuiz.css" />
 </head>
 <body>
+  <div class="page-bg"></div>
 
-<form id="quizForm" enctype="multipart/form-data" action="submitQuiz" method="POST">
-    <div class="form-container">
-        <h3><em>ADD A NEW QUIZ</em></h3>
-
-        <div class="input-container">
-            <label for="quizTitle">Quiz Title</label>
-            <input type="text" id="quizTitle" name="quizTitle" placeholder="Quiz Title" required>
+  <main class="container">
+    <form id="quizForm" action="#" method="post">
+      <header class="form-header">
+        <h1 id="page-title">Create Quiz</h1>
+        <div class="grid-2">
+          <div class="field">
+            <label for="quizTitle">Quiz title</label>
+            <input id="quizTitle" name="title" type="text" placeholder="Enter quiz title" required />
+          </div>
+          <div class="field">
+            <label for="quizDescription">Description</label>
+            <textarea id="quizDescription" name="description" rows="3" placeholder="Describe your quiz"></textarea>
+          </div>
         </div>
 
-        <div class="upload-container">
-            <input type="file" id="imageUpload" accept="image/*">
-            <div id="imagePreview" class="image-preview"></div>
+        <div class="upload-row">
+          <div class="thumb" id="imagePreview" aria-label="Image preview" role="img"></div>
+
+          <div class="upload-controls">
+            <input id="quizImage" name="image" type="file" accept="image/*" hidden />
+            <button type="button" id="triggerUpload" class="btn outline">Upload cover image</button>
+            <div class="file-name" id="fileName">No file selected</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="questions">
+        <div class="questions-header">
+          <h2>Questions</h2>
+          <button type="button" id="addQuestion" class="btn">Create Question</button>
+        </div>
+        <div id="questionsList" class="questions-list" aria-live="polite"></div>
+        <p class="hint">Drag questions to reorder. Click the question body to edit. Use the trash to delete.</p>
+      </section>
+
+      <footer class="form-footer">
+        <button type="submit" class="btn primary">Submit</button>
+        <button type="button" id="cancelBtn" class="as-text">Cancel</button>
+      </footer>
+    </form>
+  </main>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" hidden></div>
+  <dialog id="questionModal" class="modal">
+    <form method="dialog" id="modalForm">
+      <header class="modal-header">
+        <h3>Edit Question</h3>
+        <button type="button" class="icon-btn" id="closeModal" aria-label="Close">✕</button>
+      </header>
+
+      <div class="modal-body">
+        <div class="field">
+          <label for="qText">Question text</label>
+          <textarea id="qText" rows="3" required placeholder="Type your question..."></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="qPoints">Points</label>
+            <input id="qPoints" type="number" min="0" step="1" value="0" required />
+          </div>
+          <div class="field">
+            <label for="qSeconds">Duration (seconds)</label>
+            <input id="qSeconds" type="number" min="1" step="1" value="30" required />
+          </div>
         </div>
 
-        <div id="questionsContainer" class="questions-container">
-            <div class="question-section">
-                <h3>Question 1</h3>
+        <fieldset class="answers">
+          <legend>Answers (mark all that are correct)</legend>
+          <div class="answer-row"><input type="checkbox" class="aCorrect"/><input type="text" class="aText" placeholder="Answer 1" required></div>
+          <div class="answer-row"><input type="checkbox" class="aCorrect"/><input type="text" class="aText" placeholder="Answer 2" required></div>
+          <div class="answer-row"><input type="checkbox" class="aCorrect"/><input type="text" class="aText" placeholder="Answer 3" required></div>
+          <div class="answer-row"><input type="checkbox" class="aCorrect"/><input type="text" class="aText" placeholder="Answer 4" required></div>
+        </fieldset>
+      </div>
 
-                <div class="input-container">
-                    <label for="questionText">Question Text</label>
-                    <input type="text" name="questionText[]" placeholder="Question text" required>
-                </div>
+      <footer class="modal-footer">
+        <button type="submit" class="btn primary">Save</button>
+      </footer>
+    </form>
+  </dialog>
 
-                <div class="options-container">
-                    <div class="option-group">
-                        <label>Option 1</label>
-                        <input type="text" name="option1[]" class="option-input" required>
-                    </div>
-                    <div class="option-group">
-                        <label>Option 2</label>
-                        <input type="text" name="option2[]" class="option-input" required>
-                    </div>
-                    <div class="option-group">
-                        <label>Option 3</label>
-                        <input type="text" name="option3[]" class="option-input">
-                    </div>
-                    <div class="option-group">
-                        <label>Option 4</label>
-                        <input type="text" name="option4[]" class="option-input">
-                    </div>
-                </div>
-
-                <div class="input-container">
-                    <label>Correct Answer</label>
-                    <div class="chips-container">
-                        <span class="mdl-chip correct-chip" data-value="option1">
-                            <span class="mdl-chip__text">Option 1</span>
-                        </span>
-                        <span class="mdl-chip correct-chip" data-value="option2">
-                            <span class="mdl-chip__text">Option 2</span>
-                        </span>
-                        <span class="mdl-chip correct-chip" data-value="option3">
-                            <span class="mdl-chip__text">Option 3</span>
-                        </span>
-                        <span class="mdl-chip correct-chip" data-value="option4">
-                            <span class="mdl-chip__text">Option 4</span>
-                        </span>
-                    </div>
-                    <input type="hidden" name="correctAnswer[]" required>
-                </div>
-
-                <div class="input-container">
-                    <label>Time Length (in seconds): <span class="sliderValue">0</span>s</label>
-                    <input class="mdl-slider mdl-js-slider"
-                        type="range"
-                        name="timeLength[]"
-                        min="0" max="60" value="0" step="1" tabindex="0">
-                </div>
-            </div>
-        </div>
-
-        <div class="question-section-plus-button">
-            <button type="button" id="addQuestionButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-                <i class="material-icons">add</i>
-            </button>
-        </div>
-
-        <div class="submit-buttons">
-            <button type="button" id="cancel-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                Cancel
-            </button>
-            <button type="submit" id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                Submit
-            </button>
-        </div>
-    </div>
-</form>
-
-<script src="../scripts/addNewQuiz.js"></script>
+  <script type="module" src="../scripts/addNewQuiz.js" defer></script>
 </body>
 </html>
-
