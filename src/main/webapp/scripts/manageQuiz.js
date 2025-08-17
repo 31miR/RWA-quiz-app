@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
     }
 
+    // QUIZ EVENT
+
+    headerCenter.appendChild(createNavButton('EVENTS', '../admin/quizEvent.html'));
+
     // --- Add New Quiz dugme ---
     const addQuizBtn = document.getElementById('add-new-quiz-btn');
     if (addQuizBtn) {
