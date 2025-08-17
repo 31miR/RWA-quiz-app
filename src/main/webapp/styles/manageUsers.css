@@ -43,8 +43,9 @@ body::before {
     justify-content: flex-end;
 }
 
-/* Dugmad headera */
-.header-button {
+/* Stil za sve dugmad u headeru i add-quiz dugme */
+.header-center button.mdl-button,
+.header-right button.mdl-button {
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
     color: #333 !important;
     border: 1px solid #f2c6d4 !important;
@@ -60,7 +61,8 @@ body::before {
     align-items: center;
 }
 
-.header-button:hover {
+.header-center button.mdl-button:hover,
+.header-right button.mdl-button:hover{
     background: linear-gradient(to bottom, #ffd6e8, #fff0f5) !important;
     color: #222 !important;
     border-color: #e69db6 !important;
@@ -73,24 +75,30 @@ body::before {
     align-items: center;
     padding: 30px 0;
 }
-
-.add-user-button {
-    font-size: 20px;
-    color: #000;
-    background-color: #ff69b4;
-    border-radius: 32px;
-    height: 2.4rem;
-    width: auto;
-    min-width: 10rem; /* opcionalno, da dugme ne bude preusko */
-    padding: 10px 20px; /* dovoljno prostora oko teksta */
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+#add-new-user-btn.mdl-button {
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
+    color: #333 !important;
+    border: 1px solid #f2c6d4 !important;
+    border-radius: 8px !important;
+    min-width: 120px;
+    padding: 10px 20px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
+    transition: background 0.3s ease, color 0.3s ease;
+    
+    display: flex;
+    justify-content: center;  /* centriraj horizontalno */
+    align-items: center;      /* centriraj vertikalno */
+    text-align: center;
 }
 
-.add-user-button:hover {
-    color: #fff;
+#add-new-user-btn.mdl-button:hover {
+    background: linear-gradient(to bottom, #ffd6e8, #fff0f5) !important;
+    color: #222 !important;
+    border-color: #e69db6 !important;
+
 }
+
 
 /* Tabela */
 .user-table-container {

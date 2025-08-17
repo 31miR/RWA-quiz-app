@@ -11,44 +11,18 @@
 </head>
 <body data-role="superadmin">
 
-<header class="header">
-    <div class="header-content">
-        <div class="header-left"></div>
-        <div class="header-center">
-            <!-- HOME -->
-            <form action="../landingPage.html" method="GET">
-                <button type="submit" 
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
-                    HOME
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left"></div>
+            <div class="header-center">
+            </div>
+            <div class="header-right">
+                <button id="logout-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    LOGOUT
                 </button>
-            </form>
-
-            <!-- QUIZZES -->
-            <form action="../admin/editorDashboard.html" method="GET">
-                <button type="submit" 
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
-                    QUIZZES
-                </button>
-            </form>
-
-            <!-- USERS -->
-            <form action="../superadmin/manageUsers.html" method="GET">
-                <button type="submit" 
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
-                    USERS
-                </button>
-            </form>
+            </div>
         </div>
-        <div class="header-right">
-            <button id="logout-btn" 
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect header-button">
-                LOG OUT
-            </button>
-        </div>
-    </div>
-</header>
-
-
+    </header>
 <div class="add-user-button-container">
     <button id="add-new-user-btn" type="button"
         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect add-user-button header-button">

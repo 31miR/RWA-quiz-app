@@ -11,6 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'addNewUser.html';
         });
     }
+    const headerCenter = document.querySelector('.header-center');
+
+
+    // Helper funkcija za kreiranje dugmeta
+    function createNavButton(label, target) {
+        const form = document.createElement('form');
+        form.action = target;
+        form.method = 'GET';
+        const button = document.createElement('button');
+        button.type = 'submit';
+        button.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect';
+        button.textContent = label;
+        form.appendChild(button);
+        return form;
+    }
+
+    // Home uvijek
+    headerCenter.appendChild(createNavButton('HOME', '../landingPage.html'));
+
+    // Quizzes uvijek
+    headerCenter.appendChild(createNavButton('QUIZZES', '../admin/editorDashboard.html'));
+
+    // Users
+        headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
 
     // --- Logout dugme ---
     const logoutBtn = document.getElementById('logout-btn');
