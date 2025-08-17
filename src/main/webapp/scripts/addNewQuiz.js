@@ -5,7 +5,7 @@ import Quiz from "./classes/quiz.js";
 let questions = []; // {id, text, points, seconds, answers:[{text, correct}]}
 let editingId = null;
 const urlParams = new URLSearchParams(window.location.search);
-const quizId = +urlParams.get('quizId'); //if this is not null, then this will be treated as an update, not create
+const quizId = urlParams.get('quizId'); //if this is not null, then this will be treated as an update, not create
 let oldQuiz = null;
 
 // ===== Elements =====
