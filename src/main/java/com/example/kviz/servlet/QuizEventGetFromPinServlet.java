@@ -31,6 +31,7 @@ public class QuizEventGetFromPinServlet extends HttpServlet {
             ResponseType resp = new ResponseType();
             resp.quizEventId = null;
             response.getWriter().write(gson.toJson(resp));
+            return;
         }
         ResponseType resp = new ResponseType();
         resp.quizEventId = quizEvent.getPin();

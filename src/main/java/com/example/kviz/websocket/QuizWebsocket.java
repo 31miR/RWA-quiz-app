@@ -64,6 +64,8 @@ public class QuizWebsocket {
                 quizEventService.createPlayerForQuizEvent(username, quizEventService.getEventById(quizEventId));
                 hasAnswered.put(session, false);
                 broadcast("{\"type\":\"player_count\",\"count\":" + usernames.size() + "}");
+                sendTop10();
+                System.out.println("AJDE BRE VISE RADI KOJI K TI JE");
             }
 
             case "admin_start" -> {
@@ -74,7 +76,7 @@ public class QuizWebsocket {
                 questions = quiz.questions;
                 QuizEvent event = quizEventService.createEventForGivenQuiz(quizCRUDService.getQuizEntityById(quizId));
                 quizEventId = event.getId();
-                broadcast("{\"type\":\"quiz_started\"}");
+                broadcast("{\"type\":\"quiz_started\",\"pin\":\"" + event.getPin() + "\"}");
             }
 
             case "admin_next_question" -> {
@@ -123,7 +125,7 @@ public class QuizWebsocket {
         }
 
         try {
-            session.getBasicRemote().sendText("{\"type\": \"answerResult\", \"isRight\": "
+            session.getAsyncRemote().sendText("{\"type\": \"answerResult\", \"isRight\": "
             +String.valueOf(isRight)
             +", \"answers\": "
             +gson.toJson(actualAnswersSet)
@@ -153,9 +155,11 @@ public class QuizWebsocket {
             if (timerSecondsRemaining <= 0) {
                 stopTimer();
                 sendTop10();
+                System.out.println(String.valueOf(currentQuestionIndex));
+                System.out.println(String.valueOf(questions.size() - 1));
                 if (currentQuestionIndex == questions.size()-1) {
                     try {
-                        adminSession.close();
+                        broadcast("{\"type\":\"quiz_ended\"}");
                     } catch (Exception e) {}
                 }
             }
@@ -164,19 +168,20 @@ public class QuizWebsocket {
 
     private void stopTimer() {
         if (runningTimer != null && !runningTimer.isCancelled()) {
-            runningTimer.cancel(true);
+            runningTimer.cancel(false);
         }
     }
 
     private void sendTop10() {
-        String resultsJson = gson.toJson(quizEventService.getTopTenPlayers(quizId));
+        String resultsJson = gson.toJson(quizEventService.getTopTenPlayers(quizEventId));
         broadcast("{\"type\":\"question_ended\",\"results\":" + resultsJson + "}");
     }
 
     private void broadcast(String msg) {
         for (Session s : sessions) {
-            try { s.getBasicRemote().sendText(msg); }
-            catch (IOException e) { e.printStackTrace(); }
+            if (s.isOpen()) {
+                s.getAsyncRemote().sendText(msg);
+            }
         }
     }
 

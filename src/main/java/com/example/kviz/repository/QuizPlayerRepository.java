@@ -2,6 +2,7 @@ package com.example.kviz.repository;
 
 import java.util.List;
 
+import com.example.kviz.DTO.QuizPlayerDTO;
 import com.example.kviz.model.QuizPlayer;
 import com.example.kviz.util.JPAUtil;
 
@@ -61,15 +62,19 @@ public class QuizPlayerRepository {
         }
     }
 
-    public List<QuizPlayer> getTop10PlayersForQuizEvent(Long quizEventId) {
-        EntityManager em = JPAUtil.getEntityManager();
-        try {
-            TypedQuery<QuizPlayer> query = em.createQuery(
-                "SELECT p FROM QuizPlayer p WHERE p.quizEvent.id = :quizEventId ORDER BY p.score DESC",
-                QuizPlayer.class
+    public List<QuizPlayerDTO> getTop10PlayersForQuizEvent(Long quizEventId) {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+            TypedQuery<QuizPlayerDTO> query = em.createQuery(
+                "SELECT new com.example.kviz.DTO.QuizPlayerDTO(p.id, p.playerName, p.score) " +
+                "FROM QuizPlayer p " +
+                "WHERE p.quizEvent.id = :quizEventId " +
+                "ORDER BY p.score DESC",
+                QuizPlayerDTO.class
             );
             query.setParameter("quizEventId", quizEventId);
             query.setMaxResults(10);
+
             return query.getResultList();
         } finally {
             em.close();

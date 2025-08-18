@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Random;
 
+import com.example.kviz.DTO.QuizPlayerDTO;
 import com.example.kviz.model.Quiz;
 import com.example.kviz.model.QuizEvent;
 import com.example.kviz.model.QuizPlayer;
@@ -40,8 +41,8 @@ public class QuizEventService {
         return -1;
     }
 
-    public List<QuizPlayer> getTopTenPlayers(Long quizId) {
-        return quizPlayerRepository.getTop10PlayersForQuizEvent(quizId);
+    public List<QuizPlayerDTO> getTopTenPlayers(Long quizEventId) {
+        return quizPlayerRepository.getTop10PlayersForQuizEvent(quizEventId);
     }
 
     //TODO: generate XLS document that contains player rankings for given quiz and also the quiz data.
@@ -52,7 +53,7 @@ public class QuizEventService {
             int randomNumber = random.nextInt(1000000);
             String randomPin = String.valueOf(randomNumber);
             int missingExtraZeroes = 6 - randomPin.length();
-            randomPin = "".repeat(missingExtraZeroes) + randomPin;
+            randomPin = "0".repeat(missingExtraZeroes) + randomPin;
             if (!isPINinUse(randomPin)) {
                 return randomPin;
             }

@@ -100,21 +100,22 @@ public class QuizEventRepository {
     }
 
     public QuizEvent getActiveQuizByPIN(String pin) {
-        EntityManager em = JPAUtil.getEntityManager();
-        try {
+    System.out.println(pin);
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
             TypedQuery<QuizEvent> query = em.createQuery(
-                "SELECT e FROM QuizEvent e WHERE e.pin = :pin AND e.eventActive = true",
+                "SELECT e FROM QuizEvent e WHERE e.pin = :pin AND e.eventActive = :active",
                 QuizEvent.class
             );
             query.setParameter("pin", pin);
+            query.setParameter("active", true);
             query.setMaxResults(1);
 
-            em.close();
             return query.getSingleResult();
-        }
-        catch (Exception e) {
-            em.close();
+        } catch (Exception e) {
             return null;
+        } finally {
+            em.close();
         }
     }
 }
