@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kviz - Admin Panel</title>
+    <link rel="stylesheet" href="../styles/quizEventAdmin.css">
+</head>
+<body>
+    <div id="admin-container">
+        <h1>Admin Panel</h1>
+        <div id="quiz-info">
+            <p><strong>PIN:</strong> <span id="quiz-pin">...</span></p>
+            <p><strong>Broj igrača:</strong> <span id="player-count">0</span></p>
+        </div>
+
+        <div id="controls">
+            <button id="start-btn">Pokreni pitanje</button>
+            <button id="leave-btn" style="display:none;">Vrati se na dashboard.</button>
+        </div>
+
+        <div id="timer" style="display:none;">
+            <h2>Vrijeme: <span id="time-left">...</span></h2>
+        </div>
+
+        <div id="top10" style="display:none;">
+            <h2>Top 10 igrača</h2>
+            <ol id="top10-list"></ol>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/quizEventAdmin.js"></script>
+</body>
+</html>

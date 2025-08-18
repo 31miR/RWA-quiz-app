@@ -101,7 +101,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         $('.edit-button').click(function() {
             let quizId = $(this).data('id');
             window.location.href = `/kviz/admin/addNewQuiz.html?quizId=${quizId}`;
-            });
+        });
+
+        $('.play-button').click(function() {
+            let quizId = $(this).data('id');
+            window.location.href = `/kviz/admin/quizEventAdmin.html?quizId=${quizId}`;
+        });
 
         createPagination(quizList.length);
     }
