@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="./styles/playQuiz.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="icon" href="./images/icon.png" type="image/png">
+</head>
+<body>
+
+<div id="name-element" class="container">
+    <h2>Enter Your Name</h2>
+    <input type="text" id="nameInput" placeholder="Your Name" required>
+    <button id="readyButton">Ready</button>
+</div>
+
+<div id="loading" class="loading" style="display: none">
+    <h2>Quiz starting soon..</h2>
+    <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+</div>
+
+<div id="question-container" class="paper-component" style="display:none">
+    <div class="top-section">
+        <span id="number-of-players">Players: 0</span>
+        <span id="time-left">Time left: 0s</span>
+    </div>
+
+    <div class="question-section">
+        <p id="question-text">Question will appear here</p>
+    </div>
+
+    <div class="answer-section">
+        <div class="option">
+            <input type="checkbox" id="option1">
+            <label for="option1">Option 1</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="option2">
+            <label for="option2">Option 2</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="option3">
+            <label for="option3">Option 3</label>
+        </div>
+        <div class="option">
+            <input type="checkbox" id="option4">
+            <label for="option4">Option 4</label>
+        </div>
+        <button id="next-question" type="button">Submit</button>
+
+        <div id="loading-next-question" class="loading-next-question" style="display:none">
+            <p>Waiting for the next question...</p>
+            <div id="p22" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+        </div>
+    </div>
+</div>
+
+<div id="table-container" class="table-container" style="display:none">
+    <h4>Top 10 Players</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script type="module" src="./scripts/playQuiz.js"></script>
+</body>
+</html>
