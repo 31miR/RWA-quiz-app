@@ -65,7 +65,6 @@ public class QuizWebsocket {
                 hasAnswered.put(session, false);
                 broadcast("{\"type\":\"player_count\",\"count\":" + usernames.size() + "}");
                 sendTop10();
-                System.out.println("AJDE BRE VISE RADI KOJI K TI JE");
             }
 
             case "admin_start" -> {
@@ -106,7 +105,14 @@ public class QuizWebsocket {
     private void respondToAnswerAttempt(MessageFromClient msg, Session session) {
         hasAnswered.put(session, true);
         String username = usernames.get(session);
-        QuizPlayer player = quizEventService.getPlayerByPlayerName(username);
+        List<QuizPlayer> players = quizEventService.getPlayerByPlayerName(username);
+        QuizPlayer player = null;
+        for (QuizPlayer p : players) {
+            if (p.getQuizEvent().getId() == quizEventId) {
+                player = p;
+                break;
+            }
+        }
         boolean isRight = false;
         List<Long> attemptedAnswers = msg.answers;
 

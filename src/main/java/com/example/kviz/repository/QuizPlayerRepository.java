@@ -47,16 +47,16 @@ public class QuizPlayerRepository {
         }
     }
 
-    public QuizPlayer findPlayerByPlayerName(String playerName) {
+    public List<QuizPlayer> findPlayersByPlayerName(String playerName) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            QuizPlayer player = 
+            List<QuizPlayer> players = 
                 em.createQuery("SELECT p FROM QuizPlayer p WHERE p.playerName = :playerName", QuizPlayer.class)
                 .setParameter("playerName", playerName)
-                .getSingleResult();
+                .getResultList();
             em.getTransaction().commit();
-            return player;
+            return players;
         } finally {
             em.close();
         }
