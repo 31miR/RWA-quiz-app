@@ -4,6 +4,12 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.example.kviz.DTO.GetQuizEventDTO;
 import com.example.kviz.DTO.QuizPlayerDTO;
 import com.example.kviz.model.Quiz;
 import com.example.kviz.model.QuizEvent;
@@ -30,10 +36,10 @@ public class QuizEventService {
     public int getPlayerRank(Long id) {
         QuizPlayer player = getPlayerById(id);
         QuizEvent event = player.getQuizEvent();
-        List<QuizPlayer> eventPlayers = quizPlayerRepository.getAllPlayersForQuizEvent(event.getId());
+        List<QuizPlayerDTO> eventPlayers = quizPlayerRepository.getAllPlayersForQuizEvent(event.getId());
         int rank = 1;
-        for (QuizPlayer possiblePlayer : eventPlayers) {
-            if (possiblePlayer.getId().equals(player.getId())) {
+        for (QuizPlayerDTO possiblePlayer : eventPlayers) {
+            if (possiblePlayer.id.equals(player.getId())) {
                 return rank;
             }
             rank++;
@@ -45,7 +51,49 @@ public class QuizEventService {
         return quizPlayerRepository.getTop10PlayersForQuizEvent(quizEventId);
     }
 
-    //TODO: generate XLS document that contains player rankings for given quiz and also the quiz data.
+    public List<QuizPlayerDTO> getAllPlayersForQuizEvent(Long quizEventId) {
+        return quizPlayerRepository.getAllPlayersForQuizEvent(quizEventId);
+    }
+
+    public List<QuizEvent> findQuizEventsWithPagination(int offset, int limit) {
+        return quizEventRepository.findWithPagination(offset, limit);
+    }
+
+    public Workbook generateXLSWorkbookFromGetQuizEventDAO(GetQuizEventDTO quiz) {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("id");
+        headerRow.createCell(1).setCellValue("date/time created");
+        headerRow.createCell(2).setCellValue("quiz id");
+        headerRow.createCell(3).setCellValue("quiz name");
+
+        Row mainValuesRow = sheet.createRow(1);
+        mainValuesRow.createCell(0).setCellValue(quiz.id);
+        mainValuesRow.createCell(1).setCellValue(quiz.dateTimeCreated);
+        mainValuesRow.createCell(2).setCellValue(quiz.quizId);
+        mainValuesRow.createCell(3).setCellValue(quiz.quizName);
+
+        //just some space lmao
+        sheet.createRow(2);
+        
+        Row playersHeaderRow = sheet.createRow(3);
+        playersHeaderRow.createCell(0).setCellValue("id");
+        playersHeaderRow.createCell(1).setCellValue("player name");
+        playersHeaderRow.createCell(2).setCellValue("score");
+
+        int rowCount = 4;
+        for (QuizPlayerDTO player : quiz.players) {
+            Row playerRow = sheet.createRow(rowCount);
+            playerRow.createCell(0).setCellValue(player.id);
+            playerRow.createCell(1).setCellValue(player.playerName);
+            playerRow.createCell(2).setCellValue(player.score);
+            rowCount++;
+        }
+
+        return workbook;
+    }
 
     public String generateFreePinForEvent() {
         Random random = new Random();

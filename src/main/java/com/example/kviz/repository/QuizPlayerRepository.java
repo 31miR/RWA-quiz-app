@@ -81,12 +81,15 @@ public class QuizPlayerRepository {
         }
     }
 
-    public List<QuizPlayer> getAllPlayersForQuizEvent(Long quizEventId) {
+    public List<QuizPlayerDTO> getAllPlayersForQuizEvent(Long quizEventId) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            TypedQuery<QuizPlayer> query = em.createQuery(
-                "SELECT p FROM QuizPlayer p WHERE p.quizEvent.id = :quizEventId ORDER BY p.score DESC",
-                QuizPlayer.class
+            TypedQuery<QuizPlayerDTO> query = em.createQuery(
+                "SELECT new com.example.kviz.DTO.QuizPlayerDTO(p.id, p.playerName, p.score) " +
+                "FROM QuizPlayer p " +
+                "WHERE p.quizEvent.id = :quizEventId " +
+                "ORDER BY p.score DESC",
+                QuizPlayerDTO.class
             );
             query.setParameter("quizEventId", quizEventId);
             return query.getResultList();
