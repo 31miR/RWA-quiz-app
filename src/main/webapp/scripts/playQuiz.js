@@ -15,7 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let countdownInterval;
 
     function connect() {
-        websocket = new WebSocket("ws://localhost:8080/kviz/quiz");
+        let loc = window.location;
+        let protocol = (loc.protocol === "https:") ? "wss:" : "ws:";
+        let socketUrl = protocol + "//" + loc.host + "/kviz/quiz";
+
+        websocket = new WebSocket(socketUrl);
+
         websocket.onopen = () => console.log("Connected to WebSocket.");
         websocket.onmessage = (event) => {
             const data = JSON.parse(event.data);

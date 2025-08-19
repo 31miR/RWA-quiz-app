@@ -12,7 +12,11 @@ window.addEventListener("load", () => {
         return;
     }
 
-    socket = new WebSocket("ws://localhost:8080/kviz/quiz");
+    let loc = window.location;
+    let protocol = (loc.protocol === "https:") ? "wss:" : "ws:";
+    let socketUrl = protocol + "//" + loc.host + "/kviz/quiz";
+
+    let socket = new WebSocket(socketUrl);
 
     socket.onopen = () => {
         const msg = { type: "admin_start", quizId };
