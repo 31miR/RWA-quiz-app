@@ -1,0 +1,129 @@
+{
+  "title": "JavaScript",
+  "description": "Kviz o JavaScriptu",
+  "isImageSent": true,
+  "imageURI": "uploads/js_image.jpg",
+  "adminId": null,
+  "questions": [
+    {
+      "questionText": "Koja je razlika između let i var?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 0,
+      "answers": [
+        { "text": "var ima funkcijski scope", "isRight": true },
+        { "text": "let ima blok scope", "isRight": true },
+        { "text": "let se može redeklarisati više puta", "isRight": false },
+        { "text": "var se ne može hoistovati", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koji operator se koristi za strogo poređenje (vrijednost i tip)?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 1,
+      "answers": [
+        { "text": "==", "isRight": false },
+        { "text": "===", "isRight": true },
+        { "text": "!=", "isRight": false },
+        { "text": "!==", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Šta vraća typeof null u JavaScript-u?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 2,
+      "answers": [
+        { "text": "\"null\"", "isRight": false },
+        { "text": "\"undefined\"", "isRight": false },
+        { "text": "\"object\"", "isRight": true },
+        { "text": "\"string\"", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koje su ispravne metode za kreiranje niza u JavaScript-u?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 3,
+      "answers": [
+        { "text": "let arr = [];", "isRight": true },
+        { "text": "let arr = new Array();", "isRight": true },
+        { "text": "let arr = Array.of();", "isRight": true },
+        { "text": "let arr = new Object();", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Šta će ispisati console.log(2 + \"2\")?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 4,
+      "answers": [
+        { "text": "4", "isRight": false },
+        { "text": "22", "isRight": true },
+        { "text": "NaN", "isRight": false },
+        { "text": "undefined", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koja metoda pretvara JSON string u JavaScript objekat?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 5,
+      "answers": [
+        { "text": "JSON.parse()", "isRight": true },
+        { "text": "JSON.stringify()", "isRight": false },
+        { "text": "JSON.convert()", "isRight": false },
+        { "text": "parseJSON()", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koje metode postoje za rad sa nizovima?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 6,
+      "answers": [
+        { "text": "map()", "isRight": true },
+        { "text": "filter()", "isRight": true },
+        { "text": "reduce()", "isRight": true },
+        { "text": "collect()", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Šta označava this u JavaScript-u (u regularnoj funkciji, ne arrow)?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 7,
+      "answers": [
+        { "text": "Globalni objekat (window u browseru)", "isRight": true },
+        { "text": "U objektu se odnosi na taj objekat", "isRight": true },
+        { "text": "Uvijek označava null", "isRight": false },
+        { "text": "U arrow funkciji zavisi od lexical scope-a", "isRight": true }
+      ]
+    },
+    {
+      "questionText": "Šta će ispisati console.log(0 == false, 0 === false)?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 8,
+      "answers": [
+        { "text": "true true", "isRight": false },
+        { "text": "false true", "isRight": false },
+        { "text": "true false", "isRight": true },
+        { "text": "false false", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koja metoda služi za dodavanje elementa na kraj niza?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 9,
+      "answers": [
+        { "text": "push()", "isRight": true },
+        { "text": "pop()", "isRight": false },
+        { "text": "shift()", "isRight": false },
+        { "text": "unshift()", "isRight": false }
+      ]
+    }
+  ]
+}

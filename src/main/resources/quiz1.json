@@ -1,0 +1,129 @@
+{
+  "title": "Servleti",
+  "description": "Kviz o servletima",
+  "isImageSent": true,
+  "imageURI": "uploads/servlet_image.jpg",
+  "adminId": null,
+  "questions": [
+    {
+      "questionText": "Koja je tačna ekstenzija za deployment descriptor fajl u servlet aplikaciji?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 0,
+      "answers": [
+        { "text": "web.xml", "isRight": true },
+        { "text": "application.properties", "isRight": false },
+        { "text": "server.xml", "isRight": false },
+        { "text": "config.json", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koja metoda u HttpServlet-u se poziva kada korisnik pošalje GET zahtjev?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 1,
+      "answers": [
+        { "text": "doPost()", "isRight": false },
+        { "text": "doGet()", "isRight": true },
+        { "text": "service()", "isRight": false },
+        { "text": "init()", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Šta je tačno u vezi metode init() u servletima?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 2,
+      "answers": [
+        { "text": "Poziva se prilikom prvog učitavanja servleta", "isRight": true },
+        { "text": "Poziva se svaki put kada korisnik pošalje zahtjev", "isRight": false },
+        { "text": "Može primiti ServletConfig objekat", "isRight": true },
+        { "text": "Automatski uništava servlet instancu", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koja metoda se koristi za slanje odgovora nazad korisniku?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 3,
+      "answers": [
+        { "text": "getWriter()", "isRight": true },
+        { "text": "getOutputStream()", "isRight": true },
+        { "text": "getReader()", "isRight": false },
+        { "text": "setResponse()", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Šta označava metoda destroy() u servletu?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 4,
+      "answers": [
+        { "text": "Briše sve cookie fajlove korisnika", "isRight": false },
+        { "text": "Poziva se kada se servlet uklanja iz memorije", "isRight": true },
+        { "text": "Automatski restartuje server", "isRight": false },
+        { "text": "Zatvara HTTP konekciju", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koje klase implementira svaki servlet?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 5,
+      "answers": [
+        { "text": "javax.servlet.Servlet", "isRight": true },
+        { "text": "java.io.Serializable", "isRight": false },
+        { "text": "java.lang.Object", "isRight": true },
+        { "text": "java.util.Observer", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Kako se servleti mapiraju na URL?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 6,
+      "answers": [
+        { "text": "@WebServlet anotacije", "isRight": true },
+        { "text": "U web.xml fajlu", "isRight": true },
+        { "text": "Direktno u pom.xml", "isRight": false },
+        { "text": "Preko http.conf fajla", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koji je tačan redoslijed životnog ciklusa servleta?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 7,
+      "answers": [
+        { "text": "service() → init() → destroy()", "isRight": false },
+        { "text": "init() → service() → destroy()", "isRight": true },
+        { "text": "destroy() → init() → service()", "isRight": false },
+        { "text": "service() → destroy() → init()", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Koji od navedenih objekata su dostupni u servletima?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 8,
+      "answers": [
+        { "text": "HttpServletRequest", "isRight": true },
+        { "text": "HttpServletResponse", "isRight": true },
+        { "text": "HttpSession", "isRight": true },
+        { "text": "FileSystemObject", "isRight": false }
+      ]
+    },
+    {
+      "questionText": "Za šta se najčešće koristi RequestDispatcher?",
+      "timeInterval": 8,
+      "pointAmmount": 6,
+      "questionPosition": 9,
+      "answers": [
+        { "text": "Preusmjeravanje zahtjeva na drugi resurs", "isRight": true },
+        { "text": "Generisanje PDF dokumenata", "isRight": false },
+        { "text": "Upravljanje cookie fajlovima", "isRight": false },
+        { "text": "Validaciju korisničkog unosa", "isRight": false }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'war'
     id 'org.gretty' version '4.1.1'  // For Tomcat deployment
+    id 'application'                 // CLI for initial db filing with test data
 }
 
 group = 'com.example'
@@ -59,4 +60,15 @@ gretty {
 
 war {
     archiveFileName = 'kviz.war'
+}
+
+application {
+    mainClass = 'com.example.kviz.cli.ResetAndFillDBWithTestData'
+}
+
+task resetAndFillDB(type: JavaExec){
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.kviz.cli.ResetAndFillDBWithTestData'
+    description = "Reset the database and fill it in with data that can be used for testing"
+    group = "application"
 }
