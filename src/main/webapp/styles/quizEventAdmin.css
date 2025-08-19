@@ -5,27 +5,35 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: #fff;
 }
 
 #admin-container {
-    background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     padding: 20px 30px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     text-align: center;
     width: 400px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-h1 {
-    margin-bottom: 20px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-#quiz-info {
-    margin-bottom: 20px;
+#quiz-info p {
+    font-size: 18px;
+    margin: 8px 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #888888;
 }
 
-#controls {
-    margin-bottom: 20px;
+#quiz-info span {
+    font-weight: bold;
+    font-size: 20px;
+    color: #aaa;
 }
 
 button {
@@ -33,21 +41,150 @@ button {
     margin: 5px;
     border: none;
     border-radius: 8px;
-    background: #007bff;
+    background-color: #E9B3B3;
     color: white;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #DBAAAA;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 button:disabled {
-    background: #999;
+    background-color: #C18D8D;
     cursor: not-allowed;
+}
+
+#leave-btn {
+    display: none;
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff00cc, #ffcc00);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(255,0,204,0.5);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#leave-btn:hover {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 8px 25px rgba(255,0,204,0.8);
 }
 
 #timer {
     margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(36,46,77,0.9), rgba(137,126,121,0.9));
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255,0,128,0.5);
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    animation: pulse 1s infinite;
+}
+
+#timer h2 {
+    font-size: 26px;
+    color: #fff;
+    margin: 0;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255,0,128,0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(255,0,128,0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,0,128,0.5); }
+}
+
+#top10 {
+    margin-top: 25px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: dropDown 0.8s ease forwards;
+}
+
+@keyframes dropDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#top10 h2 {
+    font-size: 22px;
+    color: #ff3366;
+    margin-bottom: 15px;
 }
 
 #top10-list {
-    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#top10-list li {
+    background: rgba(233,179,179,0.2);
+    margin: 6px 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.5s ease forwards;
+    transform: translateX(-30px);
+    opacity: 0;
+    animation-delay: calc(var(--i) * 0.1s);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #aaa;
+}
+
+#top10-list li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,62,150,0.6), 0 5px 20px rgba(0,0,0,0.3);
+}
+
+#top10-list li:first-child {
+    background: rgba(255, 255, 255, 0.15);
+    color: #aaa;
+    font-size: 18px;
+    position: relative;
+}
+
+#top10-list li:first-child::before {
+    content: "🏆";
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+#top10-list span {
+    background: linear-gradient(90deg, #00fff7, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    animation: blinkScore 1s infinite;
+}
+
+@keyframes blinkScore {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.6; }
 }
