@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isSuperadmin = await isLoggedInSuperAdmin();
     const headerCenter = document.querySelector('.header-center');
 
-    // Helper funkcija za kreiranje dugmeta
     function createNavButton(label, target) {
         const form = document.createElement('form');
         form.action = target;
@@ -18,22 +17,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         return form;
     }
 
-    // Home uvijek
     headerCenter.appendChild(createNavButton('HOME', '../landingPage.html'));
 
-    // Quizzes uvijek
     headerCenter.appendChild(createNavButton('QUIZZES', 'editorDashboard.html'));
 
-    // Users samo za superadmina
     if (isSuperadmin) {
         headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
     }
 
-    // QUIZ EVENT
-
     headerCenter.appendChild(createNavButton('EVENTS', '../admin/quizEvent.html'));
 
-    // --- Add New Quiz dugme ---
     const addQuizBtn = document.getElementById('add-new-quiz-btn');
     if (addQuizBtn) {
         addQuizBtn.addEventListener('click', () => {
@@ -41,13 +34,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // --- Logout dugme ---
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => logoutAndRedirectToLanding());
     }
 
-    // --- PAGINACIJA ---
     const rowsPerPage = 10;
     let currentPage = 1;
     const tableBody = document.getElementById('quiz-table')?.getElementsByTagName('tbody')[0];

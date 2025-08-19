@@ -1,6 +1,3 @@
-
-
-/* Osnovni reset i font */
 html, body {
     height: 100%;
     margin: 0;
@@ -35,10 +32,10 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px; /* povećano sa 20px na 30px */
+    padding: 80px;
     margin: 150px auto;
-    max-width: 1500px; /* povećano sa 600px na 700px */
-    background: linear-gradient(to bottom, #fff0f5, #ffd6e8); /* promijenjena boja */
+    max-width: 1500px;
+    background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
@@ -80,15 +77,15 @@ body::before {
     margin-bottom: 20px;
 }
 .submit-buttons {
-    display: flex; /* Use Flexbox to align items */
-    gap: 10px; /* Optional: space between buttons */
-    justify-content: center; /* Center the buttons horizontally */
-    margin-top: 20px; /* Optional: space above the buttons */
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .submit-buttons .mdl-button {
-    flex: 1; /* Optional: make buttons the same width */
-    max-width: 150px; /* Optional: set a maximum width for buttons */
+    flex: 1;
+    max-width: 150px;
 }
 
 .lf--input {

@@ -42,13 +42,10 @@ window.addEventListener("load", () => {
                 showTop10(data.results);
                 break;
             case "quiz_ended":
-                // sakrij pin i broj igrača
                 document.getElementById("quiz-info").style.display = "none";
-                // sakrij timer i start dugme
                 document.getElementById("timer").style.display = "none";
                 document.getElementById("start-btn").style.display = "none";
 
-                // prikaži top10 i button ispod tabele
                 document.getElementById("top10").style.display = "block";
                 document.getElementById("leave-btn").style.display = "block";
                 document.getElementById("top10").appendChild(document.getElementById("leave-btn"));

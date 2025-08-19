@@ -73,10 +73,8 @@ public class QuizCRUDServlet extends HttpServlet {
             return;
         }
 
-        // Parse JSON into DTO
         CreateQuizDTO quiz = gson.fromJson(new java.io.InputStreamReader(quizPart.getInputStream()), CreateQuizDTO.class);
 
-        // Handle image if provided
         Part imagePart = request.getPart("image");
         if (imagePart != null && imagePart.getSize() > 0) {
             String imagePath = saveImage(imagePart);
@@ -119,7 +117,7 @@ public class QuizCRUDServlet extends HttpServlet {
             return;
         }
 
-        if (quiz.isImageSent) { // boolean polje u DTO-u
+        if (quiz.isImageSent) {
             Part imagePart = request.getPart("image");
             if (imagePart != null && imagePart.getSize() > 0) {
                 String imagePath = saveImage(imagePart);
@@ -194,7 +192,7 @@ public class QuizCRUDServlet extends HttpServlet {
             Path path = Paths.get(absolutePath);
             Files.deleteIfExists(path);
         } catch (IOException e) {
-            e.printStackTrace(); // ili log
+            e.printStackTrace();
         }
     }
 }

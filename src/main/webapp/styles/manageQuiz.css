@@ -13,23 +13,22 @@
 }
 
 .header-left {
-    flex: 1; /* zauzima lijevu trećinu */
+    flex: 1;
 }
 
 .header-center {
     display: flex;
     gap: 15px;
     justify-content: center;
-    flex: 1; /* centar zauzima sredinu */
+    flex: 1;
 }
 
 .header-right {
-    flex: 1; /* desna sekcija skroz desno */
+    flex: 1;
     display: flex;
     justify-content: flex-end;
 }
 
-/* Stil za sve dugmad u headeru i add-quiz dugme */
 .header-center button.mdl-button,
 .header-right button.mdl-button,
 .add-quiz-button-container button.mdl-button {
@@ -73,7 +72,6 @@
     color: #fff;
 }
 
-/* Style for the table container */
 .quiz-table-container {
     display: flex;
     flex-direction: column;
@@ -83,7 +81,6 @@
     margin-top: 20px;
 }
 
-/* Style for the table */
 .quiz-table {
     width: 90%;
     border-collapse: collapse;
@@ -114,7 +111,6 @@
     height: 50px;
 }
 
-/* Style for action buttons */
 .action-button {
     padding: 5px 10px;
     margin: 0 5px;
@@ -156,22 +152,22 @@
 }
 
 .pagination-container {
-    bottom: 20px; /* koliko udaljeno od dna */
+    bottom: 20px;
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: center; /* centrirano horizontalno */
-    gap: 10px; /* razmak između dugmadi */
-    z-index: 1000; /* da budu iznad ostalog sadržaja */
-     justify-content: center; /* centriraj horizontalno */
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000;
+     justify-content: center;
     align-items: center;
      text-align: center;
 }
 
 .pagination-container button {
-    display: flex; /* ključno za centriranje */
-    justify-content: center; /* horizontalno centriranje teksta */
-    align-items: center; /* vertikalno centriranje teksta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     border: 1px solid #f2c6d4;
@@ -180,7 +176,7 @@
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
     transition: background 0.3s ease;
-    text-align: center; /* za svaki slučaj */
+    text-align: center;
 }
 
 

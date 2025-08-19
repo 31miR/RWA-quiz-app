@@ -1,12 +1,11 @@
 import { logoutAndRedirectToLanding } from "./util/backendHelperFuncs.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Add New User dugme ---
     const addUserBtn = document.getElementById('add-new-user-btn');
     if (addUserBtn) {
-        addUserBtn.classList.add('add-user-button'); // obavezno da CSS boja radi
-        addUserBtn.classList.add('header-button'); // MDL override
-        addUserBtn.style.background = ''; // ukloni inline MDL background
+        addUserBtn.classList.add('add-user-button');
+        addUserBtn.classList.add('header-button');
+        addUserBtn.style.background = '';
         addUserBtn.addEventListener('click', () => {
             window.location.href = 'addNewUser.html';
         });
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerCenter = document.querySelector('.header-center');
 
 
-    // Helper funkcija za kreiranje dugmeta
     function createNavButton(label, target) {
         const form = document.createElement('form');
         form.action = target;
@@ -27,22 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return form;
     }
 
-    // Home uvijek
     headerCenter.appendChild(createNavButton('HOME', '../landingPage.html'));
 
-    // Quizzes uvijek
     headerCenter.appendChild(createNavButton('QUIZZES', '../admin/editorDashboard.html'));
 
-    // Users
-        headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
+    headerCenter.appendChild(createNavButton('USERS', '../superadmin/manageUsers.html'));
 
-    // --- Logout dugme ---
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => logoutAndRedirectToLanding());
     }
 
-    // --- PAGINACIJA TABELA ---
     const rowsPerPage = 10;
     let currentPage = 1;
     let allUsers = [];

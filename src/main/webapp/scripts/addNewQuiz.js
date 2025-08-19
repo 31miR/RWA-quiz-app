@@ -14,13 +14,11 @@ const addQuestionBtn = document.getElementById('addQuestion');
 const questionsList = document.getElementById('questionsList');
 const cancelBtn = document.getElementById('cancelBtn');
 
-// Image upload
 const triggerUpload = document.getElementById('triggerUpload');
 const fileInput = document.getElementById('quizImage');
 const fileName = document.getElementById('fileName');
 const imagePreview = document.getElementById('imagePreview');
 
-// Modal
 const modal = document.getElementById('questionModal');
 const modalBackdrop = document.getElementById('modalBackdrop');
 const closeModalBtn = document.getElementById('closeModal');
@@ -29,7 +27,6 @@ const qText = document.getElementById('qText');
 const qPoints = document.getElementById('qPoints');
 const qSeconds = document.getElementById('qSeconds');
 
-// Now we have to modify the page a bit if this is an update xd
 if (quizId != null) {
     const pageTitle = document.getElementById("page-title");
     pageTitle.innerText = "Update Quiz";
@@ -82,7 +79,6 @@ function closeModal(){
 closeModalBtn.addEventListener('click', closeModal);
 modalBackdrop.addEventListener('click', closeModal);
 
-// Image upload behavior
 triggerUpload.addEventListener('click', ()=> fileInput.click());
 fileInput.addEventListener('change', ()=>{
   const file = fileInput.files?.[0];
@@ -96,13 +92,11 @@ fileInput.addEventListener('change', ()=>{
   }
 });
 
-// Add question -> opens empty modal
 addQuestionBtn.addEventListener('click', ()=>{
   editingId = null;
   openModal(null);
 });
 
-// Save from modal
 modalForm.addEventListener('submit', (e)=>{
   e.preventDefault();
   const answers = [...modal.querySelectorAll('.answer-row')].map(row=>({
@@ -127,7 +121,6 @@ modalForm.addEventListener('submit', (e)=>{
   closeModal();
 });
 
-// Render list
 function renderQuestions(){
   questionsList.innerHTML = '';
   questions.forEach((q, index)=>{
@@ -168,7 +161,6 @@ function renderQuestions(){
   });
 }
 
-// Simple HTML5 Drag & Drop
 let dragEl = null;
 function attachDnd(el){
   el.addEventListener('dragstart', (e)=>{
@@ -180,7 +172,7 @@ function attachDnd(el){
     el.classList.remove('drag-ghost'); dragEl = null;
   });
   el.addEventListener('dragover', (e)=>{
-    e.preventDefault(); // allow drop
+    e.preventDefault();
     const target = el;
     const bounding = target.getBoundingClientRect();
     const offset = e.clientY - bounding.top;
@@ -190,7 +182,6 @@ function attachDnd(el){
     }
   });
   el.addEventListener('drop', ()=>{
-    // rebuild order from DOM
     const ids = [...questionsList.children].map(c=>c.dataset.editingId);
     questions.sort((a,b)=> ids.indexOf(a.editingId) - ids.indexOf(b.editingId));
     renderQuestions();
@@ -201,10 +192,8 @@ function escapeHTML(str){
   return (str||'').replace(/[&<>"]/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[s]));
 }
 
-// Cancel (acts like text link)
 cancelBtn.addEventListener('click', ()=>{
   if(confirm('Discard all changes?')){
-    // Reset form and state
     quizForm.reset();
     imagePreview.style.backgroundImage = '';
     questions = [];
@@ -213,7 +202,6 @@ cancelBtn.addEventListener('click', ()=>{
   }
 });
 
-// Form submit: collect everything and pass to a single function you implement
 quizForm.addEventListener('submit', (e)=>{
   e.preventDefault();
   collectFormDataAndSubmitQuiz();
@@ -222,7 +210,7 @@ quizForm.addEventListener('submit', (e)=>{
 async function collectFormDataAndSubmitQuiz(){
   const title = document.getElementById('quizTitle').value.trim();
   const description = document.getElementById('quizDescription').value.trim();
-  const image = fileInput.files?.[0] || null; // you can pack this into FormData
+  const image = fileInput.files?.[0] || null;
 
   const newQuiz = oldQuiz == null ? (new Quiz()) : oldQuiz;
 

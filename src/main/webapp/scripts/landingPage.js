@@ -3,17 +3,15 @@ import { isLoggedIn, logoutAndRedirectToLanding, getQuizEventIdFromPin } from ".
 document.addEventListener("DOMContentLoaded", async () => {
     const isLogedIn = await isLoggedIn();
     const loginFab = document.querySelector(".login-fab");
-    loginFab.innerHTML = ""; // očisti dugmad
+    loginFab.innerHTML = "";
 
     if (isLogedIn) {
-        // LOGOUT dugme
         const logoutBtn = document.createElement("button");
         logoutBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
         logoutBtn.textContent = "LOG OUT";
         logoutBtn.addEventListener("click", () => logoutAndRedirectToLanding()
         );
 
-        // PANELS dugme
         const panelsBtn = document.createElement("button");
         panelsBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
         panelsBtn.textContent = "PANELS";
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         loginFab.appendChild(panelsBtn);
 
     } else {
-        // LOG IN dugme
         const loginBtn = document.createElement("button");
         loginBtn.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
         loginBtn.textContent = "LOG IN";
@@ -42,7 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     inputs.forEach((input, index) => {
         input.addEventListener('input', (e) => {
             const value = input.value;
-            // dozvoli samo cifru 0-9
             input.value = value.replace(/[^0-9]/g, '');
             if (input.value.length === 1 && index < inputs.length - 1) {
                 inputs[index + 1].focus();

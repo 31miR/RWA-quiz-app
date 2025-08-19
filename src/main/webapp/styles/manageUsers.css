@@ -1,4 +1,3 @@
-/* Pozadina */
 html, body {
     background: linear-gradient(135deg, rgba(36,46,77,0.9), rgba(137,126,121,0.9));
 }
@@ -16,7 +15,6 @@ body::before {
     z-index: -1;
 }
 
-/* Header */
 .header-content {
     display: flex;
     align-items: center;
@@ -43,7 +41,6 @@ body::before {
     justify-content: flex-end;
 }
 
-/* Stil za sve dugmad u headeru i add-quiz dugme */
 .header-center button.mdl-button,
 .header-right button.mdl-button {
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
@@ -68,7 +65,6 @@ body::before {
     border-color: #e69db6 !important;
 }
 
-/* Add user dugme */
 .add-user-button-container {
     display: flex;
     justify-content: center;
@@ -87,8 +83,8 @@ body::before {
     transition: background 0.3s ease, color 0.3s ease;
     
     display: flex;
-    justify-content: center;  /* centriraj horizontalno */
-    align-items: center;      /* centriraj vertikalno */
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -100,10 +96,9 @@ body::before {
 }
 
 
-/* Tabela */
 .user-table-container {
     display: flex;
-    flex-direction: column; /* ovo je pravi način */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -135,7 +130,6 @@ body::before {
     background-color: #ddd;
 }
 
-/* Action buttons u tabeli */
 .edit-button {
     background-color: #4CAF50;
     border-radius: 32px;
@@ -160,22 +154,22 @@ body::before {
     color: #fff;
 }
 .pagination-container {
-    bottom: 20px; /* koliko udaljeno od dna */
+    bottom: 20px;
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: center; /* centrirano horizontalno */
-    gap: 10px; /* razmak između dugmadi */
-    z-index: 1000; /* da budu iznad ostalog sadržaja */
-     justify-content: center; /* centriraj horizontalno */
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000;
+     justify-content: center;
     align-items: center;
      text-align: center;
 }
 
 .pagination-container button {
-    display: flex; /* ključno za centriranje */
-    justify-content: center; /* horizontalno centriranje teksta */
-    align-items: center; /* vertikalno centriranje teksta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     border: 1px solid #f2c6d4;
@@ -184,7 +178,7 @@ body::before {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(255, 182, 193, 0.5);
     transition: background 0.3s ease;
-    text-align: center; /* za svaki slučaj */
+    text-align: center;
 }
 
 

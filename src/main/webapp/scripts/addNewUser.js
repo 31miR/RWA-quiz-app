@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cancelButton = document.querySelector('.submit-buttons button[type="button"]');
     const errorMessageParagraph = document.getElementById('error-message');
 
-    // Ako postoji userId, popuni formu podacima korisnika
     if (userId != null) {
         const user = await getProfileDataById(userId);
         form.querySelector('input[name="name"]').value = user.fullName || '';
@@ -17,12 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         form.querySelector('input[name="password"]').value = user.password || '';
     }
 
-    // Klik na Cancel dugme – preusmjeri na manageUser.html
     cancelButton.addEventListener('click', function () {
         window.location.href = 'manageUsers.html';
     });
 
-    // Klik na Submit dugme
     submitButton.addEventListener('click', async (event) => {
         event.preventDefault();
 

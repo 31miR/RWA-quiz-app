@@ -22,7 +22,6 @@ body::before {
     z-index: -1;
 }
 
-/* HEADER */
 .header {
     background: transparent;
     padding: 10px 30px;
@@ -35,23 +34,22 @@ body::before {
 }
 
 .header-left {
-    flex: 1; /* prazan prostor lijevo */
+    flex: 1;
 }
 
 .header-center {
     display: flex;
     gap: 15px;
-    justify-content: center; /* centrira HOME i QUIZZES */
+    justify-content: center;
     flex: 1;
 }
 
 .header-right {
-    flex: 1; /* desna strana */
+    flex: 1;
     display: flex;
     justify-content: flex-end;
 }
 
-/* Dugmad */
 .mdl-button {
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8) !important;
     color: #333 !important;

@@ -14,21 +14,21 @@ html, body {
         rgba(137, 126, 121, 0.9)
     );
 }
-/* Play prompt ispod login forme */
+
 .play-prompt {
     text-align: center;
     margin-top: 20px;
     font-size: 16px;
-    color: #000; /* bijeli tekst za "Wanna play?" */
+    color: #000;
 }
 
 .lets-go-link {
-    color: #ff69b4; /* uočljiva, ali uljudna boja */
+    color: #ff69b4;
     font-weight: 600;
     text-decoration: none;
     padding: 5px 12px;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* blagi halo efekt */
+    background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -52,7 +52,6 @@ body::before {
     z-index: -1;
 }
 
-/* Glavni kontejner za formu */
 .login-form {
     background: linear-gradient(to bottom, #fff0f5, #ffd6e8);
     padding: 30px 40px;
@@ -67,14 +66,12 @@ body::before {
     z-index: 1;
 }
 
-/* Redovi input polja */
 .flex-row {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
 }
 
-/* Input polja */
 .lf--input {
     padding: 12px;
     border: none;
@@ -83,7 +80,6 @@ body::before {
     font-size: 14px;
 }
 
-/* Poruka o grešci */
 .error-message {
     color: red;
     font-size: 13px;
@@ -91,13 +87,11 @@ body::before {
     margin-bottom: 10px;
 }
 
-/* Link za login */
 .link {
     margin-top: 15px;
     text-align: center;
 }
 
-/* Responzivnost */
 @media screen and (max-width: 768px) {
     .login-form {
         width: 100%;
