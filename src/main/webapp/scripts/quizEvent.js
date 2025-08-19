@@ -2,20 +2,20 @@ import { logoutAndRedirectToLanding } from "./util/backendHelperFuncs.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Logout dugme ---
+   
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => logoutAndRedirectToLanding());
     }
 
-    // --- PAGINACIJA TABELA ---
+    
     const rowsPerPage = 10;
     let currentPage = 1;
     let allQuizzes= [];
 
     function fetchAndPopulateTable() {
         $.ajax({
-            url: '/kviz/api/superadmin/admin?offset=0&limit=1000',
+            url: '/kviz/api/quizEventRaw?offset=0&limit=1000',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -39,11 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const QuizzesToShow = allQuizzes.slice(start, end);
         QuizzesToShow.forEach(quiz => {
             let row = $('<tr></tr>');
-            row.append('<td>' + quiz.title + '</td>');
-           // row.append('<td>' + quiz. + '</td>');  -> date 
-           // row.append('<td>' + (quiz.isActive ? "Yes" : "No") + '</td>'); -> active
-           // row.append('<td>' + quiz. + '</td>');  -> download
+            row.append('<td>' + quiz.quizName + '</td>');
+            row.append('<td>' + quiz.dateTimeCreated + '</td>');  
+            row.append('<td>' + (quiz.eventActive ? "Yes" : "No") + '</td>'); 
+            row.append('<td>' + (quiz.eventActive ? "" : `<a href = "/kviz/api/quizEventRaw?id=${quiz.id}&getXls=true"><button id="download-${quiz.id}">Download</button></a>`) + '</td>');  
             tableBody.append(row);
+            
         });
 
 
