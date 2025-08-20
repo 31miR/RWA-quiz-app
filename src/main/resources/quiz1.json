@@ -7,7 +7,7 @@
   "questions": [
     {
       "questionText": "Koja je tačna ekstenzija za deployment descriptor fajl u servlet aplikaciji?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 0,
       "answers": [
@@ -19,7 +19,7 @@
     },
     {
       "questionText": "Koja metoda u HttpServlet-u se poziva kada korisnik pošalje GET zahtjev?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 1,
       "answers": [
@@ -31,7 +31,7 @@
     },
     {
       "questionText": "Šta je tačno u vezi metode init() u servletima?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 2,
       "answers": [
@@ -43,7 +43,7 @@
     },
     {
       "questionText": "Koja metoda se koristi za slanje odgovora nazad korisniku?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 3,
       "answers": [
@@ -55,7 +55,7 @@
     },
     {
       "questionText": "Šta označava metoda destroy() u servletu?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 4,
       "answers": [
@@ -67,7 +67,7 @@
     },
     {
       "questionText": "Koje klase implementira svaki servlet?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 5,
       "answers": [
@@ -79,7 +79,7 @@
     },
     {
       "questionText": "Kako se servleti mapiraju na URL?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 6,
       "answers": [
@@ -91,7 +91,7 @@
     },
     {
       "questionText": "Koji je tačan redoslijed životnog ciklusa servleta?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 7,
       "answers": [
@@ -103,7 +103,7 @@
     },
     {
       "questionText": "Koji od navedenih objekata su dostupni u servletima?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 8,
       "answers": [
@@ -115,7 +115,7 @@
     },
     {
       "questionText": "Za šta se najčešće koristi RequestDispatcher?",
-      "timeInterval": 8,
+      "timeInterval": 15,
       "pointAmmount": 6,
       "questionPosition": 9,
       "answers": [

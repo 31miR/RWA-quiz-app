@@ -7,7 +7,7 @@
   "questions": [
     {
       "questionText": "Koja je razlika između let i var?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 0,
       "answers": [
@@ -19,7 +19,7 @@
     },
     {
       "questionText": "Koji operator se koristi za strogo poređenje (vrijednost i tip)?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 1,
       "answers": [
@@ -31,7 +31,7 @@
     },
     {
       "questionText": "Šta vraća typeof null u JavaScript-u?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 2,
       "answers": [
@@ -43,7 +43,7 @@
     },
     {
       "questionText": "Koje su ispravne metode za kreiranje niza u JavaScript-u?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 3,
       "answers": [
@@ -55,7 +55,7 @@
     },
     {
       "questionText": "Šta će ispisati console.log(2 + \"2\")?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 4,
       "answers": [
@@ -67,7 +67,7 @@
     },
     {
       "questionText": "Koja metoda pretvara JSON string u JavaScript objekat?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 5,
       "answers": [
@@ -79,7 +79,7 @@
     },
     {
       "questionText": "Koje metode postoje za rad sa nizovima?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 6,
       "answers": [
@@ -91,7 +91,7 @@
     },
     {
       "questionText": "Šta označava this u JavaScript-u (u regularnoj funkciji, ne arrow)?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 7,
       "answers": [
@@ -103,7 +103,7 @@
     },
     {
       "questionText": "Šta će ispisati console.log(0 == false, 0 === false)?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 8,
       "answers": [
@@ -115,7 +115,7 @@
     },
     {
       "questionText": "Koja metoda služi za dodavanje elementa na kraj niza?",
-      "timeInterval": 8,
+      "timeInterval": 14,
       "pointAmmount": 6,
       "questionPosition": 9,
       "answers": [
