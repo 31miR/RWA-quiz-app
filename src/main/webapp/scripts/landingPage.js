@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        window.location.href = "/kviz/quizEventClient.html";
+        window.location.href = `/kviz/quizEventClient.html?quizEventId=${quizEventId}`;
     });
 });
 

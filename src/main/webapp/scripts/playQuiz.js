@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const top10List = document.getElementById("top10-list");
     const waitingForPlayers = document.getElementById("loading-next-question");
     const checkboxes = document.querySelectorAll('.answer-section input[type="checkbox"]');
+    const quizEventId = +((new URL(window.location.href)).searchParams.get("quizEventId"))
     let websocket;
     let countdownInterval;
 
@@ -55,9 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         websocket.onerror = (err) => console.error("WebSocket error:", err);
     }
 
-    readyButton.addEventListener('click', () => {
+    readyButton.addEventListener('click', async () => {
         const nameInput = document.getElementById('nameInput').value.trim();
         if (!nameInput) return alert("Unesite ime!");
+        const data = await fetch(`/kviz/api/quizPlayer?playerName=${nameInput}&quizEventId=${quizEventId}`);
+        const {id} = await data.json();
+        if (id != null) {
+            return alert("Zauzeto ime, probajte neko novo");
+        }
         sessionStorage.setItem('playerName', nameInput);
         const joinMsg = JSON.stringify({ type: "join", username: nameInput });
         if (websocket && websocket.readyState === WebSocket.OPEN) {

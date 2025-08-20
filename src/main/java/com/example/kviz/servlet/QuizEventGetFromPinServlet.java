@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 class ResponseType {
-    public String quizEventId;
+    public Long quizEventId;
 }
 
 @WebServlet(name = "QuizEventGetFromPinServlet", urlPatterns = "/api/quizEvent")
@@ -34,7 +34,7 @@ public class QuizEventGetFromPinServlet extends HttpServlet {
             return;
         }
         ResponseType resp = new ResponseType();
-        resp.quizEventId = quizEvent.getPin();
+        resp.quizEventId = quizEvent.getId();
         response.getWriter().write(gson.toJson(resp));
     }
 }
